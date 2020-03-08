@@ -1,6 +1,6 @@
-import { combineReducers} from "redux"
-import students from "./students"
+import { combineReducers} from 'redux'
+import tableData from './tableDataReducer'
 
-const rootReducer = combineReducers({students})
+const rootReducer = combineReducers({tableData: tableData})
 
 export  default rootReducer

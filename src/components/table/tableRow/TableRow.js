@@ -12,12 +12,12 @@ export default function CustomTableRow({row}) {
       <TableCell align="center">
         <Checkbox />
       </TableCell>
-      <TableCell align="right">{row.id}</TableCell>
+      <TableCell align="center">{row.id}</TableCell>
       <TableCell align="center">{row.name}</TableCell>
       <TableCell align="center" className={classes.email}>{row.email}</TableCell>
       <TableCell align="center">{row.changeDate.toDateString('en-US')}</TableCell>
       <TableCell align="right">{row.score.toLocaleString('en-US')}</TableCell>
-      <TableCell align="center">{row.size}</TableCell>
+      <TableCell align="center">{row.size.value}</TableCell>
       <TableCell align="center">{row.isMarried ? 'Yes' : 'No'}</TableCell>
     </TableRow>
   );
