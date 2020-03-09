@@ -1,4 +1,4 @@
-import { ACTION_SORT_SETTINGS_CHANGED, ACTION_DATA_CHANGED } from '../constants'
+import { ACTION_SORT_SETTINGS_CHANGED, ACTION_DATA_CHANGED, ACTION_FILTER_SETTINGS_CHANGED } from '../constants'
 
 export const sortSettingsChanged = (newTableHeadData)=> ({
   type: ACTION_SORT_SETTINGS_CHANGED,
@@ -8,4 +8,9 @@ export const sortSettingsChanged = (newTableHeadData)=> ({
 export const dataChanged = (newStudentsData)=> ({
   type: ACTION_DATA_CHANGED,
   newStudentsData
+})
+
+export const filterSettingsChanged = (newStudentsData)=> ({
+  type: ACTION_FILTER_SETTINGS_CHANGED,
+  newStudentsData,
 })

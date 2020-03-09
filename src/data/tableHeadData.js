@@ -9,6 +9,7 @@ const headerData = [
     isSorted: false,
     sortDirection: SORT_DIRECTION_ASC,
     sortQueue: 1,
+    isFilterKey: false,
 },
   {
     id: 'id',
@@ -16,6 +17,7 @@ const headerData = [
     isSorted: false,
     sortDirection: SORT_DIRECTION_ASC,
     sortQueue: 1,
+    isFilterKey: false,
   },
   {
     id: 'name',
@@ -23,6 +25,7 @@ const headerData = [
     isSorted: false,
     sortDirection: SORT_DIRECTION_ASC,
     sortQueue: 1,
+    isFilterKey: true,
   },
   {
     id: 'email',
@@ -30,6 +33,7 @@ const headerData = [
     isSorted: false,
     sortDirection: SORT_DIRECTION_ASC,
     sortQueue: 1,
+    isFilterKey: false,
   },
   {
     id: 'changeDate',
@@ -37,6 +41,7 @@ const headerData = [
     isSorted: false,
     sortDirection: SORT_DIRECTION_ASC,
     sortQueue: 1,
+    isFilterKey: false,
   },
   {
     id: 'score',
@@ -44,6 +49,7 @@ const headerData = [
     isSorted: false,
     sortDirection: SORT_DIRECTION_ASC,
     sortQueue: 1,
+    isFilterKey: false,
   },
   {
     id: 'size',
@@ -51,6 +57,7 @@ const headerData = [
     isSorted: false,
     sortDirection: SORT_DIRECTION_ASC,
     sortQueue: 1,
+    isFilterKey: false,
   },
   {
     id: 'isMarried',
@@ -58,6 +65,7 @@ const headerData = [
     isSorted: false,
     sortDirection: SORT_DIRECTION_ASC,
     sortQueue: 1,
+    isFilterKey: false,
   }
 ]
 
