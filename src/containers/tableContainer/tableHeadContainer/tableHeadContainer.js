@@ -9,7 +9,6 @@ export default function TableHeadContainer({ handleSortClick }) {
     tableHeadData: state.tableData.tableHeadData,
   }))
   const dispatch = useDispatch()
-
   const handleClickColumn = (event, clickedElement) => {
     const isShiftPressed = event.shiftKey
 

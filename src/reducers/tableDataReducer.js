@@ -21,6 +21,7 @@ const initialState = {
 
 const tableDataReducer = (state = initialState,
                           {type, newTableHeadData, newStudentsData, newFilterKeys}) => {
+
   switch (type) {
     case ACTION_SORT_SETTINGS_CHANGED:
       return {

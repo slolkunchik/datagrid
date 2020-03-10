@@ -8,19 +8,22 @@ export default function() {
   const [selectValue, setSelectValue] = useState([])
   const [switchValue, setSwitchValue] = useState(false)
   const dispatch = useDispatch()
-  const { initialStudentsData, filterKeys } = useSelector(state => ({
-    initialStudentsData: state.tableData.initialStudentsData,
+  const { filterKeys } = useSelector(state => ({
     filterKeys: state.tableData.filterKeys,
   }))
-  const {searchFieldsArray} = filterKeys
-
   const handleSelectChange = (event) => {
+    if (event === null) {
+      return;
+    }
     const selectedOptions = event.map((option)=>option.value)
     setSelectValue(selectedOptions)
   }
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => {
+    if (!searchValue && selectValue.length === 0 ) {
+      return;
+    }
+    const timer = setTimeout(() => {
       dispatch(filterSettingsChanged(
         {
           ...filterKeys,
@@ -30,11 +33,11 @@ export default function() {
         })
       )
     }, 400)
-    return () => clearTimeout(timeOutId);
-  }, [searchValue, initialStudentsData, filterKeys, searchFieldsArray, dispatch])
+    return () => clearTimeout(timer)
+  }, [searchValue, switchValue, selectValue, dispatch])
 
   return (
-    <SearchPannel handleSearchChange={event => setSearchValue(event.target.value)}
+    <SearchPannel handleSearchChange={event => {setSearchValue(event.target.value)}}
                   handleSelectChange={handleSelectChange}
                   handleSwitchChange={event => setSwitchValue(event.target.checked)}
                   value = {searchValue}

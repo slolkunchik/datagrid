@@ -15,11 +15,20 @@ import {doFilter} from '../../utils/filterUtils'
 export default function CustomTableContainer() {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const { studentsData, initialStudentsData, searchValue, searchFieldsArray} = useSelector(state => ({
+  const {
+    studentsData,
+    initialStudentsData,
+    searchValue,
+    searchFieldsArray,
+    selectValue,
+    isMarriedChecked
+  } = useSelector(state => ({
     studentsData: state.tableData.studentsData,
     initialStudentsData: state.tableData.initialStudentsData,
     searchValue: state.tableData.filterKeys.searchValue,
     searchFieldsArray: state.tableData.filterKeys.searchFieldsArray,
+    selectValue: state.tableData.filterKeys.selectValue,
+    isMarriedChecked: state.tableData.filterKeys.isMarriedChecked,
   }))
 
   const handleSortClick = (el, isShiftPressed) => {
@@ -32,7 +41,9 @@ export default function CustomTableContainer() {
     dispatch(dataChanged(arrayToSort))
   }
 
-  const filteredStudents = searchValue.length > 0 ? doFilter(studentsData, searchValue, searchFieldsArray) : studentsData
+  const filteredStudents = searchValue.length > 0
+    ? doFilter(studentsData, searchValue, searchFieldsArray, selectValue, isMarriedChecked)
+    : studentsData
 
   return (
     <TableContainer component={Paper} className={classes.container}>

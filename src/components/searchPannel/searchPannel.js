@@ -11,7 +11,7 @@ export default function({ handleSearchChange, handleSelectChange, handleSwitchCh
 
   return (
     <section className={classes.root}>
-      <h4 className={classes.title}>Filter settings</h4>
+      <h4 className={classes.title}>Filter options</h4>
       <div className={classes.form}>
         <Paper component="form" className={classes.searchBox}>
           <InputBase

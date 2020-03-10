@@ -1,15 +1,25 @@
-export const doFilter = (values, filterKey, fields) => {
+export const doFilter = (values, filterKey, searchFieldsArray, selectValuesArray, isSwitchChecked) => {
   if (!filterKey) {
     return values
   }
 
   const lowerCaseFilterKey = filterKey.toLowerCase()
 
-  return values.filter(value =>
+  const filteredArray = values.filter(value =>
     Object.keys(value)
       .map(key =>
-        fields.includes(key) ? value[key].toString().toLowerCase() : ''
+        searchFieldsArray.includes(key) ? value[key].toString().toLowerCase() : ''
       )
       .find(element => element.toString().includes(lowerCaseFilterKey))
   )
+
+  if(selectValuesArray.length > 0) {
+
+  }
+
+  if(isSwitchChecked) {
+
+  }
+
+  return filteredArray
 }
