@@ -21,7 +21,7 @@ export default function({ onChange, value }) {
             <InputBase
               value = {value}
               className={classes.input}
-              placeholder="Search field"
+              placeholder="Search by name, email, score fields"
               inputProps={{ 'aria-label': 'search field' }}
               onChange={onChange}
             />

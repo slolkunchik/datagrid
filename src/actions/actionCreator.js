@@ -10,7 +10,7 @@ export const dataChanged = (newStudentsData)=> ({
   newStudentsData
 })
 
-export const filterSettingsChanged = (newStudentsData)=> ({
+export const filterSettingsChanged = (newFilterKeys)=> ({
   type: ACTION_FILTER_SETTINGS_CHANGED,
-  newStudentsData,
+  newFilterKeys
 })

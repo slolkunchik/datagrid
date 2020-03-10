@@ -6,37 +6,23 @@ import {filterSettingsChanged} from '../../actions/actionCreator'
 export default function() {
   const [searchValue, setSearchValue] = useState('')
   const dispatch = useDispatch()
-  const { initialStudentsData} = useSelector(state => ({
+  const { initialStudentsData, filterKeys} = useSelector(state => ({
     initialStudentsData: state.tableData.initialStudentsData,
+    filterKeys: state.tableData.filterKeys,
   }))
-
-  const doFilter = (values, filterKey, fields = ['name']) => {
-    if (!filterKey) {
-      return values
-    }
-
-    const lowerCaseFilterKey = filterKey.toLowerCase()
-
-    return values.filter(value =>
-      Object.keys(value)
-        .map(key =>
-          fields.includes(key) ? value[key].toString().toLowerCase() : ''
-        )
-        .find(element => element.toString().includes(lowerCaseFilterKey))
-    )
-  }
+  const {searchFieldsArray} = filterKeys
 
   useEffect(() => {
     const timeOutId = setTimeout(() => {
-      const filteredStudents = doFilter(initialStudentsData, searchValue, [
-        'name',
-        'email',
-        'score',
-      ])
-      dispatch(filterSettingsChanged(filteredStudents))
+      dispatch(filterSettingsChanged(
+        {
+          ...filterKeys,
+          searchValue: searchValue
+        })
+      )
     }, 400)
     return () => clearTimeout(timeOutId);
-  }, [searchValue, initialStudentsData, dispatch])
+  }, [searchValue, initialStudentsData, filterKeys, searchFieldsArray, dispatch])
 
   return (
     <SearchPannel onChange={event => setSearchValue(event.target.value)} value = {searchValue}/>

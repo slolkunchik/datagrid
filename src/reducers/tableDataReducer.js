@@ -11,11 +11,14 @@ const initialState = {
   initialStudentsData: _.cloneDeep(studentsData),
   studentsData,
   tableHeadData,
-  searchValue: '',
+  filterKeys: {
+    searchFieldsArray: ['name', 'email', 'score'],
+    searchValue: '',
+  },
 }
 
 const tableDataReducer = (state = initialState,
-                          {type, newTableHeadData, newStudentsData}) => {
+                          {type, newTableHeadData, newStudentsData, newFilterKeys}) => {
   switch (type) {
     case ACTION_SORT_SETTINGS_CHANGED:
       return {
@@ -30,7 +33,7 @@ const tableDataReducer = (state = initialState,
     case ACTION_FILTER_SETTINGS_CHANGED:
       return {
         ...state,
-        studentsData: newStudentsData,
+        filterKeys: newFilterKeys,
       };
     default:
       return state;
