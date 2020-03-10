@@ -14,6 +14,8 @@ const initialState = {
   filterKeys: {
     searchFieldsArray: ['name', 'email', 'score'],
     searchValue: '',
+    selectValue: [],
+    isMarriedChecked: false,
   },
 }
 

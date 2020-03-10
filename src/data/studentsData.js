@@ -1,29 +1,35 @@
 import faker from 'faker'
 
 faker.seed(600)
-const sizes = [
+
+export const sizes = [
   {
     weight: 0,
-    value: 'XS'
+    value: 'XS',
+    label: 'XS',
   },
   {
     weight: 1,
-    value: 'S'
+    value: 'S',
+    label: 'S',
   },
   {
     weight: 2,
-    value: 'M'
+    value: 'M',
+    label: 'M',
   },
   {
     weight: 3,
-    value: 'L'
+    value: 'L',
+    label: 'L',
   },
   {
     weight: 4,
-    value: 'XL'
+    value: 'XL',
+    label: 'XL',
   }]
 
-export const makeFake = (index) => {
+const makeFake = (index) => {
   return {
     "id": index + 1,
     "name": faker.name.findName(),

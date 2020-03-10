@@ -6,8 +6,13 @@ import SearchPannelContainer from './containers/searchPannelContainer/searchPann
 function App() {
   return (
     <>
-      <SearchPannelContainer />
-      <TableContainer />
+      <header>
+        <h1>DataGrid project</h1>
+      </header>
+      <main>
+        <SearchPannelContainer />
+        <TableContainer />
+      </main>
     </>
   );
 }
