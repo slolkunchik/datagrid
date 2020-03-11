@@ -34,6 +34,7 @@ export default function TableHeadContainer({ handleSortClick }) {
     } else {
       tableHeadData.forEach((headElement) => {
         headElement.isSorted = false
+        headElement.sortQueue = 1
       })
     }
     stateElement.isSorted = true

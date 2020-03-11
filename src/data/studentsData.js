@@ -41,6 +41,6 @@ const makeFake = (index) => {
   };
 };
 
-const data = [...new Array(1000)].map((_, index) => makeFake(index))
+const data = [...new Array(100)].map((_, index) => makeFake(index))
 
 export default data

@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, {useState} from 'react'
+import { useSelector } from 'react-redux'
 import Table from '@material-ui/core/Table'
 import Paper from '@material-ui/core/Paper'
 import TableHeadContainer from './tableHeadContainer/tableHeadContainer'
@@ -9,14 +9,11 @@ import useStyles from './table-styles'
 import {sortDesc, sortAsc} from '../../utils/sortUtils'
 import _ from 'lodash'
 import {SORT_DIRECTION_ASC} from '../../constants'
-import {dataChanged} from '../../actions/actionCreator'
 import {doFilter} from '../../utils/filterUtils'
 
 export default function CustomTableContainer() {
   const classes = useStyles()
-  const dispatch = useDispatch()
   const {
-    studentsData,
     initialStudentsData,
     searchValue,
     searchFieldsArray,
@@ -25,11 +22,13 @@ export default function CustomTableContainer() {
   } = useSelector(state => ({
     studentsData: state.tableData.studentsData,
     initialStudentsData: state.tableData.initialStudentsData,
-    searchValue: state.tableData.filterKeys.searchValue,
-    searchFieldsArray: state.tableData.filterKeys.searchFieldsArray,
-    selectValue: state.tableData.filterKeys.selectValue,
-    isMarriedChecked: state.tableData.filterKeys.isMarriedChecked,
+    searchValue: state.filters.searchValue,
+    searchFieldsArray: state.filters.searchFieldsArray,
+    selectValue: state.filters.selectValue,
+    isMarriedChecked: state.filters.isMarriedChecked,
   }))
+
+  const [studentsData, setStudentsData] =  useState(_.cloneDeep(initialStudentsData))
 
   const handleSortClick = (el, isShiftPressed) => {
     const arrayToSort = isShiftPressed ? studentsData : _.cloneDeep(initialStudentsData)
@@ -38,7 +37,7 @@ export default function CustomTableContainer() {
       ? sortAsc(el.id, arrayToSort)
       : sortDesc(el.id, arrayToSort)
 
-    dispatch(dataChanged(arrayToSort))
+    setStudentsData(arrayToSort)
   }
 
   const filteredStudents = searchValue.length > 0

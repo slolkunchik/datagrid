@@ -1,16 +1,26 @@
-import { ACTION_SORT_SETTINGS_CHANGED, ACTION_DATA_CHANGED, ACTION_FILTER_SETTINGS_CHANGED } from '../constants'
+import {
+  ACTION_SORT_SETTINGS_CHANGED,
+  ACTION_SEARCH_VALUE_CHANGED,
+  ACTION_SELECT_VALUE_CHANGED,
+  ACTION_SWITCH_CHANGED,
+} from '../constants'
 
 export const sortSettingsChanged = (newTableHeadData)=> ({
   type: ACTION_SORT_SETTINGS_CHANGED,
   newTableHeadData
 })
 
-export const dataChanged = (newStudentsData)=> ({
-  type: ACTION_DATA_CHANGED,
-  newStudentsData
+export const filterSearchValueChanged = (newSearchValue)=> ({
+  type: ACTION_SEARCH_VALUE_CHANGED,
+  newSearchValue
 })
 
-export const filterSettingsChanged = (newFilterKeys)=> ({
-  type: ACTION_FILTER_SETTINGS_CHANGED,
-  newFilterKeys
+export const filterSelectValueChanged = (newSelectValue)=> ({
+  type: ACTION_SELECT_VALUE_CHANGED,
+  newSelectValue
+})
+
+export const filterSwitchValueChanged = (newSwitchPosition)=> ({
+  type: ACTION_SWITCH_CHANGED,
+  newSwitchPosition
 })

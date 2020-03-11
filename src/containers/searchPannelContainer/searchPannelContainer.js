@@ -1,46 +1,41 @@
 import React, {useEffect, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import SearchPannel from '../../components/searchPannel/searchPannel'
-import {filterSettingsChanged} from '../../actions/actionCreator'
+import {
+  filterSearchValueChanged,
+  filterSelectValueChanged,
+  filterSwitchValueChanged,
+} from '../../actions/actionCreator'
 
 export default function() {
-  const [searchValue, setSearchValue] = useState('')
-  const [selectValue, setSelectValue] = useState([])
-  const [switchValue, setSwitchValue] = useState(false)
+  const [searchInputValue, setSearchValue] = useState('')
   const dispatch = useDispatch()
-  const { filterKeys } = useSelector(state => ({
-    filterKeys: state.tableData.filterKeys,
-  }))
   const handleSelectChange = (event) => {
     if (event === null) {
+      dispatch(filterSelectValueChanged([]))
       return;
     }
     const selectedOptions = event.map((option)=>option.value)
-    setSelectValue(selectedOptions)
+    dispatch(filterSelectValueChanged(selectedOptions))
   }
 
   useEffect(() => {
-    if (!searchValue && selectValue.length === 0 ) {
+    if (!searchInputValue) {
       return;
     }
     const timer = setTimeout(() => {
-      dispatch(filterSettingsChanged(
-        {
-          ...filterKeys,
-          searchValue: searchValue,
-          selectValue: selectValue,
-          isMarriedChecked: switchValue,
-        })
-      )
+      dispatch(filterSearchValueChanged(searchInputValue)
+    )
     }, 400)
     return () => clearTimeout(timer)
-  }, [searchValue, switchValue, selectValue, dispatch])
+  }, [searchInputValue, dispatch])
 
   return (
-    <SearchPannel handleSearchChange={event => {setSearchValue(event.target.value)}}
-                  handleSelectChange={handleSelectChange}
-                  handleSwitchChange={event => setSwitchValue(event.target.checked)}
-                  value = {searchValue}
+    <SearchPannel
+      handleSearchChange={event => {setSearchValue(event.target.value)}}
+      handleSelectChange={handleSelectChange}
+      handleSwitchChange={event => dispatch(filterSwitchValueChanged(event.target.checked))}
+      value = {searchInputValue}
     />
   )
 }

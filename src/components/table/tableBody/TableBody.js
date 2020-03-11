@@ -7,7 +7,6 @@ import TableBody from "@material-ui/core/TableBody";
 
 function CustomTableBody({students}) {
   const classes = useStyles()
-
   return (
     <TableBody>
       {students.map(row => (

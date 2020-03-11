@@ -1,6 +1,7 @@
 import { combineReducers} from 'redux'
-import tableData from './tableDataReducer'
+import tableData from './tableSortReducer'
+import filters from './filterReducer'
 
-const rootReducer = combineReducers({tableData: tableData})
+const rootReducer = combineReducers({ tableData, filters })
 
 export  default rootReducer
