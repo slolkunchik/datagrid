@@ -3,9 +3,9 @@ import TableCell from '@material-ui/core/TableCell'
 import TableRow from '@material-ui/core/TableRow'
 import Checkbox from '@material-ui/core/Checkbox'
 import useStyles from './tableBody-styles'
-import TableBody from "@material-ui/core/TableBody";
+import TableBody from "@material-ui/core/TableBody"
 
-function CustomTableBody({students}) {
+export default function CustomTableBody({students}) {
   const classes = useStyles()
   return (
     <TableBody>
@@ -24,10 +24,3 @@ function CustomTableBody({students}) {
     </TableBody>
   );
 }
-
-export default React.memo(
-  CustomTableBody,
-  (a, b) => {
-    return JSON.stringify(a) === JSON.stringify(b)
-  }
-);

@@ -39,8 +39,9 @@ export default function CustomTableContainer() {
 
     setStudentsData(arrayToSort)
   }
+  const isFiltered = searchValue.length > 0 || selectValue.length > 0 || isMarriedChecked
 
-  const filteredStudents = searchValue.length > 0
+  const filteredStudents = isFiltered
     ? doFilter(studentsData, searchValue, searchFieldsArray, selectValue, isMarriedChecked)
     : studentsData
 
