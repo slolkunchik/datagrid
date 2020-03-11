@@ -3,6 +3,7 @@ import {
   ACTION_SEARCH_VALUE_CHANGED,
   ACTION_SELECT_VALUE_CHANGED,
   ACTION_SWITCH_CHANGED,
+  ACTION_DATA_CHANGED,
 } from '../constants'
 
 export const sortSettingsChanged = (newTableHeadData)=> ({
@@ -23,4 +24,9 @@ export const filterSelectValueChanged = (newSelectValue)=> ({
 export const filterSwitchValueChanged = (newSwitchPosition)=> ({
   type: ACTION_SWITCH_CHANGED,
   newSwitchPosition
+})
+
+export const dataChanged = (newStudentsData)=> ({
+  type: ACTION_DATA_CHANGED,
+  newStudentsData
 })

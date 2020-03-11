@@ -31,13 +31,13 @@ export const sizes = [
 
 const makeFake = (index) => {
   return {
-    "id": index + 1,
-    "name": faker.name.findName(),
-    "email": faker.internet.email(),
-    "score":  faker.random.number(),
-    "changeDate": faker.date.between('2019-09-01', '2020-03-06'),
-    "size": sizes[faker.random.number({min:0, max:4})],
-    "isMarried": faker.random.boolean(),
+    'id': index + 1,
+    'name': faker.name.findName(),
+    'email': faker.internet.email(),
+    'score':  faker.random.number(),
+    'changeDate': faker.date.between('2019-09-01', '2020-03-06'),
+    'size': sizes[faker.random.number({min:0, max:4})],
+    'isMarried': faker.random.boolean(),
   };
 };
 

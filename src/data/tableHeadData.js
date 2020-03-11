@@ -1,16 +1,6 @@
-import Checkbox from '@material-ui/core/Checkbox'
-import React from 'react'
 import { SORT_DIRECTION_ASC } from '../constants'
 
 const headerData = [
-  {
-    id: 'checkbox',
-    body: <Checkbox />,
-    isSorted: false,
-    sortDirection: SORT_DIRECTION_ASC,
-    sortQueue: 1,
-    isFilterKey: false,
-},
   {
     id: 'id',
     body: '#',

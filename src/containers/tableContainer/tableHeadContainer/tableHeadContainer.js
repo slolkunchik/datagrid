@@ -4,17 +4,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { sortSettingsChanged } from '../../../actions/actionCreator'
 import { SORT_DIRECTION_ASC, SORT_DIRECTION_DESC  } from '../../../constants'
 
-export default function TableHeadContainer({ handleSortClick }) {
+export default function TableHeadContainer({ handleSortClick, onSelectAll, selectedNumber }) {
   const { tableHeadData } = useSelector(state => ({
     tableHeadData: state.tableData.tableHeadData,
   }))
   const dispatch = useDispatch()
   const handleClickColumn = (event, clickedElement) => {
     const isShiftPressed = event.shiftKey
-
-    if(clickedElement.id === 'checkbox') {
-      return undefined
-    }
 
     const index = tableHeadData.findIndex((stateElement) => {
       return clickedElement.id === stateElement.id
@@ -59,6 +55,10 @@ export default function TableHeadContainer({ handleSortClick }) {
   }
 
   return (
-    <TableHead handleClickColumn={ handleClickColumn } />
+    <TableHead
+      handleClickColumn={ handleClickColumn }
+      onSelectAll={onSelectAll}
+      selectedNumber={selectedNumber}
+    />
   );
 }

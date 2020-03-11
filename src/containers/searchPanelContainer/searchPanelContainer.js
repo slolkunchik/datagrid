@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch } from 'react-redux'
-import SearchPannel from '../../components/searchPannel/searchPannel'
+import SearchPannel from '../../components/searchPanel/searchPanel'
 import {
   filterSearchValueChanged,
   filterSelectValueChanged,
@@ -20,9 +20,6 @@ export default function() {
   }
 
   useEffect(() => {
-    if (!searchInputValue) {
-      return;
-    }
     const timer = setTimeout(() => {
       dispatch(filterSearchValueChanged(searchInputValue)
     )

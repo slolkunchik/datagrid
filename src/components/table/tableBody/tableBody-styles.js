@@ -6,5 +6,6 @@ const useStyles = makeStyles({
     textOverflow: 'ellipsis',
     maxWidth: 150,
   },
-});
-export default useStyles;
+})
+
+export default useStyles

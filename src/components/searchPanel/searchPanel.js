@@ -1,5 +1,5 @@
 import React from 'react'
-import useStyles from './seachPannel-styles'
+import useStyles from './seachPanel-styles'
 import SearchIcon from '@material-ui/icons/Search'
 import Paper from '@material-ui/core/Paper'
 import InputBase from '@material-ui/core/InputBase'

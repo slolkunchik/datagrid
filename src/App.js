@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import TableContainer from './containers/tableContainer/tableContainer'
-import SearchPannelContainer from './containers/searchPannelContainer/searchPannelContainer'
+import SearchPannelContainer from './containers/searchPanelContainer/searchPanelContainer'
 
 function App() {
   return (
