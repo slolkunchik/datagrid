@@ -20,6 +20,9 @@ const useStyles = makeStyles({
     textOverflow: 'ellipsis',
     minWidth: 0,
   },
+  selected: {
+    backgroundColor: 'rgba(226,191,191,0.51)',
+  },
   email: {
     overflow: 'hidden',
     textOverflow: 'ellipsis',

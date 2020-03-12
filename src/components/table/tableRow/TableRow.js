@@ -12,7 +12,9 @@ export default function TableRow({onSelectRow, selectedRows, isVirtualizationOn,
   return (
     <div
       style={isVirtualizationOn ? style : {}}
-      className={classes.tableRow}
+      className={clsx(classes.tableRow, {
+        [classes.selected]: isItemSelected,
+      })}
       onClick={event => onSelectRow(event, student.id)}
     >
       <div className={clsx(classes.tableCell, classes.checkbox)}><Checkbox checked={isItemSelected}/></div>

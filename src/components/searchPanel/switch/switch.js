@@ -9,7 +9,6 @@ export default function({ handleSwitchChange, label, checked }) {
         <Switch
           onChange={handleSwitchChange}
           value="checkedB"
-          color="primary"
           checked={checked}
         />
       }
