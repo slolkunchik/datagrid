@@ -4,4 +4,5 @@ h1 {
 }
 .wrapper {
   min-width: 1115px;
+  margin: 0 auto;
 }

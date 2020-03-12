@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import TableHeadContainer from './tableHeadContainer/tableHeadContainer'
 import TableBody from '../../components/table/tableBody/TableBody'
+import TableBodyVirtualized from '../../components/table/tableBodyVirtualized/TableBodyVirtualized'
 import useStyles from './table-styles'
 import {sortDesc, sortAsc} from '../../utils/sortUtils'
 import _ from 'lodash'
@@ -29,6 +30,7 @@ export default function CustomTableContainer() {
 
   const [studentsData, setStudentsData] =  useState(_.cloneDeep(initialStudentsData))
   const [selectedRows, setSelectedRows] = useState([])
+  const isVirtualizationOn = true
 
   const handleSortClick = (el, isShiftPressed) => {
     const arrayToSort = isShiftPressed ? studentsData : _.cloneDeep(initialStudentsData)
@@ -99,10 +101,16 @@ export default function CustomTableContainer() {
             handleSortClick={handleSortClick}
             onSelectAll={handleSelectAllClick}
             selectedNumber={selectedRows.length}/>
-          <TableBody
-            students={filteredStudents}
-            selectedRows={selectedRows}
-            onSelectRow={handleSelectRow}/>
+          {isVirtualizationOn
+            ? <TableBodyVirtualized isVirtualizationOn={isVirtualizationOn}
+                                    students={filteredStudents}
+                                    selectedRows={selectedRows}
+                                    onSelectRow={handleSelectRow}/>
+            : <TableBody isVirtualizationOn={isVirtualizationOn}
+                         students={filteredStudents}
+                         selectedRows={selectedRows}
+                         onSelectRow={handleSelectRow}/>
+          }
         </div>
       </div>
     </>
