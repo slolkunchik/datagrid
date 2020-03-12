@@ -19,18 +19,19 @@ export default function CustomTableContainer() {
     searchValue,
     searchFieldsArray,
     selectValue,
-    isMarriedChecked
+    isMarriedChecked,
+    isVirtualizationOn,
   } = useSelector(state => ({
     initialStudentsData: state.tableData.initialStudentsData,
     searchValue: state.filters.searchValue,
     searchFieldsArray: state.filters.searchFieldsArray,
     selectValue: state.filters.selectValue,
     isMarriedChecked: state.filters.isMarriedChecked,
+    isVirtualizationOn: state.virtualization.isChecked,
   }))
 
   const [studentsData, setStudentsData] =  useState(_.cloneDeep(initialStudentsData))
   const [selectedRows, setSelectedRows] = useState([])
-  const isVirtualizationOn = true
 
   const handleSortClick = (el, isShiftPressed) => {
     const arrayToSort = isShiftPressed ? studentsData : _.cloneDeep(initialStudentsData)
@@ -91,7 +92,8 @@ export default function CustomTableContainer() {
     <>
       <DeletePanel
         selectedNumber={selectedRows.length}
-        onDeleteClick={handleDeleteClick}/>
+        onDeleteClick={handleDeleteClick}
+      />
       <div
         className={classes.container}>
         <div

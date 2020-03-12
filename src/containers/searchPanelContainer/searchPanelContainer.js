@@ -1,13 +1,19 @@
 import React, {useEffect, useState} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SearchPannel from '../../components/searchPanel/searchPanel'
 import {
   filterSearchValueChanged,
   filterSelectValueChanged,
   filterSwitchValueChanged,
+  isVirtualizationOn,
 } from '../../actions/actionCreator'
 
 export default function() {
+  const {
+    isVirtOn,
+  } = useSelector(state => ({
+    isVirtOn: state.virtualization.isChecked,
+  }))
   const [searchInputValue, setSearchValue] = useState('')
   const dispatch = useDispatch()
   const handleSelectChange = (event) => {
@@ -33,6 +39,8 @@ export default function() {
       handleSelectChange={handleSelectChange}
       handleSwitchChange={event => dispatch(filterSwitchValueChanged(event.target.checked))}
       value = {searchInputValue}
+      isVirtualizationOn={isVirtOn}
+      handleIsVirtualizationCheck={(event)=> dispatch(isVirtualizationOn(event.target.checked))}
     />
   )
 }

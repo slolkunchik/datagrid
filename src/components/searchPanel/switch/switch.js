@@ -2,7 +2,7 @@ import React from 'react'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 
-export default function({ handleSwitchChange }) {
+export default function({ handleSwitchChange, label, checked }) {
   return (
     <FormControlLabel
       control={
@@ -10,9 +10,10 @@ export default function({ handleSwitchChange }) {
           onChange={handleSwitchChange}
           value="checkedB"
           color="primary"
+          checked={checked}
         />
       }
-      label="Married"
+      label={label}
     />
   )
 }

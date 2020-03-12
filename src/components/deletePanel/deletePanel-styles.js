@@ -4,6 +4,7 @@ const style = makeStyles( theme => ({
   root: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1),
+    justifyContent: 'space-between',
   },
   highlight:
     theme.palette.type === 'light'

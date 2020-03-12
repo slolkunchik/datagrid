@@ -6,7 +6,12 @@ import InputBase from '@material-ui/core/InputBase'
 import Select from './select/select'
 import Switch from './switch/switch'
 
-export default function({ handleSearchChange, handleSelectChange, handleSwitchChange, value }) {
+export default function({ handleSearchChange,
+                          handleSelectChange,
+                          handleSwitchChange,
+                          value,
+                          isVirtualizationOn,
+                          handleIsVirtualizationCheck }) {
   const classes = useStyles()
 
   return (
@@ -24,7 +29,12 @@ export default function({ handleSearchChange, handleSelectChange, handleSwitchCh
           <SearchIcon className={classes.icon}/>
         </Paper>
         <Select onChange={handleSelectChange} />
-        <Switch handleSwitchChange={handleSwitchChange}/>
+        <Switch handleSwitchChange={handleSwitchChange} label='Married'/>
+        <Switch
+          handleSwitchChange={(event)=> handleIsVirtualizationCheck(event)}
+          label={isVirtualizationOn ? 'Virt. ON' : 'Virt. OFF'}
+          checked={isVirtualizationOn}
+          title='switch virtualization'/>
       </div>
     </section>
   )
