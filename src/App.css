@@ -2,3 +2,6 @@ h1 {
   color: #5d4c4b;
   text-transform: uppercase;
 }
+.wrapper {
+  min-width: 1115px;
+}

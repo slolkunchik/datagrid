@@ -5,7 +5,7 @@ import SearchPannelContainer from './containers/searchPanelContainer/searchPanel
 
 function App() {
   return (
-    <>
+    <div className='wrapper'>
       <header>
         <h1>DataGrid project</h1>
       </header>
@@ -13,7 +13,7 @@ function App() {
         <SearchPannelContainer />
         <TableContainer />
       </main>
-    </>
+    </div>
   );
 }
 

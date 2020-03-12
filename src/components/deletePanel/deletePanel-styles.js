@@ -1,4 +1,4 @@
-import { lighten, makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 const style = makeStyles( theme => ({
   root: {
@@ -9,7 +9,7 @@ const style = makeStyles( theme => ({
     theme.palette.type === 'light'
       ? {
         color: theme.palette.secondary.main,
-        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+        backgroundColor: 'rgba(203,203,203,0.35)',
       }
       : {
         color: theme.palette.text.primary,

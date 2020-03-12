@@ -1,10 +1,7 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import Table from '@material-ui/core/Table'
-import Paper from '@material-ui/core/Paper'
 import TableHeadContainer from './tableHeadContainer/tableHeadContainer'
 import TableBody from '../../components/table/tableBody/TableBody'
-import TableContainer from '@material-ui/core/TableContainer'
 import useStyles from './table-styles'
 import {sortDesc, sortAsc} from '../../utils/sortUtils'
 import _ from 'lodash'
@@ -93,12 +90,10 @@ export default function CustomTableContainer() {
       <DeletePanel
         selectedNumber={selectedRows.length}
         onDeleteClick={handleDeleteClick}/>
-      <TableContainer
-        component={Paper}
+      <div
         className={classes.container}>
-        <Table
+        <div
           className={classes.table}
-          stickyHeader
           aria-label="sticky table">
           <TableHeadContainer
             handleSortClick={handleSortClick}
@@ -108,8 +103,8 @@ export default function CustomTableContainer() {
             students={filteredStudents}
             selectedRows={selectedRows}
             onSelectRow={handleSelectRow}/>
-        </Table>
-      </TableContainer>
+        </div>
+      </div>
     </>
   );
 }
