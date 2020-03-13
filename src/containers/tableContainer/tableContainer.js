@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import TableHeadContainer from './tableHeadContainer/tableHeadContainer'
 import TableBody from '../../components/table/tableBody/TableBody'
-import TableBodyVirtualized from '../../components/table/tableBodyVirtualized/TableBodyVirtualized'
+import TableBodyVirtualized from '../../components/table/tableBodyVirtualized/tableBodyVirtualized'
 import useStyles from './table-styles'
 import {sortDesc, sortAsc} from '../../utils/sortUtils'
 import _ from 'lodash'
@@ -90,30 +90,36 @@ export default function CustomTableContainer() {
 
   return (
     <>
-      <DeletePanel
-        selectedNumber={selectedRows.length}
-        onDeleteClick={handleDeleteClick}
-      />
       <div
         className={classes.container}>
-        <div
-          className={classes.table}
-          aria-label="sticky table">
-          <TableHeadContainer
-            handleSortClick={handleSortClick}
-            onSelectAll={handleSelectAllClick}
-            selectedNumber={selectedRows.length}/>
+        <DeletePanel
+          selectedNumber={selectedRows.length}
+          onDeleteClick={handleDeleteClick}
+        />
           {isVirtualizationOn
-            ? <TableBodyVirtualized isVirtualizationOn={isVirtualizationOn}
+            ? <>
+            <div className={classes.divider}></div>
+            <TableBodyVirtualized isVirtualizationOn={isVirtualizationOn}
                                     students={filteredStudents}
                                     selectedRows={selectedRows}
-                                    onSelectRow={handleSelectRow}/>
-            : <TableBody isVirtualizationOn={isVirtualizationOn}
-                         students={filteredStudents}
-                         selectedRows={selectedRows}
-                         onSelectRow={handleSelectRow}/>
+                                    onSelectRow={handleSelectRow}
+                                    handleSortClick={handleSortClick}
+                                    onSelectAll={handleSelectAllClick}
+            />
+            </>
+            : <div
+              className={classes.table}>
+              <TableHeadContainer
+                handleSortClick={handleSortClick}
+                onSelectAll={handleSelectAllClick}
+                selectedNumber={selectedRows.length}/>
+              <TableBody isVirtualizationOn={isVirtualizationOn}
+                           students={filteredStudents}
+                           selectedRows={selectedRows}
+                           onSelectRow={handleSelectRow}/>
+            </div>
           }
-        </div>
+
       </div>
     </>
   );

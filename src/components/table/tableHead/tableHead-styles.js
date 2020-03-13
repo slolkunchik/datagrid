@@ -31,19 +31,33 @@ const useStyles = makeStyles({
   },
   tableHeadRow: {
     position: 'sticky',
+    zIndex: 3,
     top: 0,
     display: 'flex',
     height: 65,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+    width: '200%',
   },
   checkbox: {
     width: 80,
+    flexGrow: 0,
+    position: 'sticky',
+    left: 0,
+    zIndex: 2,
   },
   id: {
     width: 75,
+    flexGrow: 0,
+    position: 'sticky',
+    left: 86,
+    zIndex: 2,
   },
   name: {
     width: 180,
+    flexGrow: 0,
+    position: 'sticky',
+    left: 167,
+    zIndex: 2,
   },
   changeDate: {
     width: 160,

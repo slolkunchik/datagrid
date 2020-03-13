@@ -17,14 +17,30 @@ export default function TableRow({onSelectRow, selectedRows, isVirtualizationOn,
       })}
       onClick={event => onSelectRow(event, student.id)}
     >
-      <div className={clsx(classes.tableCell, classes.checkbox)}><Checkbox checked={isItemSelected}/></div>
-      <div className={clsx(classes.tableCell, classes.id)}>{student.id}</div>
-      <div className={clsx(classes.tableCell, classes.name)}>{student.name}</div>
-      <div className={classes.tableCell}><p className={classes.email}>{student.email}</p></div>
-      <div className={clsx(classes.tableCell, classes.date)}>{student.changeDate.toDateString('en-US')}</div>
-      <div className={clsx(classes.tableCell, classes.score)}>{student.score.toLocaleString('en-US')}</div>
-      <div className={clsx(classes.tableCell, classes.size)}>{student.size.value}</div>
-      <div className={clsx(classes.tableCell, classes.married)}>{student.isMarried ? 'Yes' : 'No'}</div>
+      <div className={clsx(classes.tableCell, classes.checkbox, {
+        [classes.selected]: isItemSelected,
+      })}><Checkbox checked={isItemSelected}/></div>
+      <div className={clsx(classes.tableCell, classes.id, {
+        [classes.selected]: isItemSelected,
+      })}><p>{student.id}</p></div>
+      <div className={clsx(classes.tableCell, classes.name, {
+        [classes.selected]: isItemSelected,
+      })}><p>{student.name}</p></div>
+      <div className={clsx(classes.tableCell, {
+        [classes.selected]: isItemSelected,
+      })}><p className={classes.email}>{student.email}</p></div>
+      <div className={clsx(classes.tableCell, classes.date, {
+        [classes.selected]: isItemSelected,
+      })}><p>{student.changeDate.toDateString('en-US')}</p></div>
+      <div className={clsx(classes.tableCell, classes.score, {
+        [classes.selected]: isItemSelected,
+      })}><p>{student.score.toLocaleString('en-US')}</p></div>
+      <div className={clsx(classes.tableCell, classes.size, {
+        [classes.selected]: isItemSelected,
+      })}><p>{student.size.value}</p></div>
+      <div className={clsx(classes.tableCell, classes.married, {
+        [classes.selected]: isItemSelected,
+      })}><p>{student.isMarried ? 'Yes' : 'No'}</p></div>
     </div>
 )
 }
