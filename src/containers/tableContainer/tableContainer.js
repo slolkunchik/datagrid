@@ -21,13 +21,15 @@ export default function CustomTableContainer() {
     selectValue,
     isMarriedChecked,
     isVirtualizationOn,
+    columns,
   } = useSelector(state => ({
     initialStudentsData: state.tableData.initialStudentsData,
-    searchValue: state.filters.searchValue,
-    searchFieldsArray: state.filters.searchFieldsArray,
-    selectValue: state.filters.selectValue,
-    isMarriedChecked: state.filters.isMarriedChecked,
+    searchValue: state.toolsSettings.searchValue,
+    searchFieldsArray: state.toolsSettings.searchFieldsArray,
+    selectValue: state.toolsSettings.selectValue,
+    isMarriedChecked: state.toolsSettings.isMarriedChecked,
     isVirtualizationOn: state.virtualization.isChecked,
+    columns: state.toolsSettings.columns,
   }))
 
   const [studentsData, setStudentsData] =  useState(_.cloneDeep(initialStudentsData))
@@ -105,6 +107,7 @@ export default function CustomTableContainer() {
                                     onSelectRow={handleSelectRow}
                                     handleSortClick={handleSortClick}
                                     onSelectAll={handleSelectAllClick}
+                                    columns={columns}
             />
             </>
             : <div
@@ -116,7 +119,9 @@ export default function CustomTableContainer() {
               <TableBody isVirtualizationOn={isVirtualizationOn}
                            students={filteredStudents}
                            selectedRows={selectedRows}
-                           onSelectRow={handleSelectRow}/>
+                           onSelectRow={handleSelectRow}
+                           columns={columns}
+              />
             </div>
           }
 

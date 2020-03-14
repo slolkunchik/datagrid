@@ -2,10 +2,10 @@ import React, {forwardRef }  from 'react'
 import TableRow from '../tableRow/TableRow'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import TableHeadContainer from "../../../containers/tableContainer/tableHeadContainer/tableHeadContainer"
-import { StickyList, StickyListContext } from './stickyList'
+import { StickyVirtualizedList, StickyVirtualizedListContext } from '../../../containers/tableContainer/StickyVirtualizedList'
 
 export default function TableBodyVirtualized({ children, stickyIndices, ...rest }) {
-  const {students, onSelectRow, selectedRows, isVirtualizationOn, handleSortClick, onSelectAll} = rest
+  const {students, onSelectRow, selectedRows, isVirtualizationOn, handleSortClick, onSelectAll, columns} = rest
   const data = [null, ...students]
 
   const Row = ({ index, style }) => {
@@ -17,6 +17,7 @@ export default function TableBodyVirtualized({ children, stickyIndices, ...rest 
         isVirtualizationOn={isVirtualizationOn}
         style={style}
         student={row}
+        columns={columns}
       />)
   }
 
@@ -28,29 +29,29 @@ export default function TableBodyVirtualized({ children, stickyIndices, ...rest 
   );
 
   const innerElementType = forwardRef(({ children, ...rest }, ref) => (
-    <StickyListContext.Consumer>
+    <StickyVirtualizedListContext.Consumer>
       {() => (
         <div ref={ref} {...rest}>
             <StickyRow />
           {children}
         </div>
       )}
-    </StickyListContext.Consumer>
+    </StickyVirtualizedListContext.Consumer>
   ));
 
   return (
     <AutoSizer>
       {({ width, height }) => (
-        <StickyList
+        <StickyVirtualizedList
           height={height}
           innerElementType={innerElementType}
           itemCount={data.length}
-          itemSize={65}
+          itemSize={35}
           width={width}
           stickyIndices={[0]}
         >
           {Row}
-        </StickyList>
+        </StickyVirtualizedList>
       )}
     </AutoSizer>
   )

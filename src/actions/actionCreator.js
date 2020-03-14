@@ -5,6 +5,7 @@ import {
   ACTION_SWITCH_CHANGED,
   ACTION_DATA_CHANGED,
   ACTION_VIRT_CHANGED,
+  ACTION_COLUMNS_CHANGED,
 } from '../constants'
 
 export const sortSettingsChanged = (newTableHeadData) => ({
@@ -35,4 +36,9 @@ export const dataChanged = (newStudentsData) => ({
 export const isVirtualizationOn = (isVirtualizationCheck) => ({
   type: ACTION_VIRT_CHANGED,
   isVirtualizationCheck
+})
+
+export const changeColumnsToDisplay = (newColumnsToDisplay) => ({
+  type: ACTION_COLUMNS_CHANGED,
+  newColumnsToDisplay
 })

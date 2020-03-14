@@ -1,8 +1,8 @@
 import { combineReducers} from 'redux'
 import tableData from './tableSortReducer'
-import filters from './filterReducer'
+import toolsSettings from './toolSettingsReducer'
 import virtualization from './isVirtOnReducer'
 
-const rootReducer = combineReducers({ tableData, filters, virtualization })
+const rootReducer = combineReducers({ tableData, toolsSettings, virtualization })
 
 export  default rootReducer

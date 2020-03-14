@@ -3,11 +3,12 @@ import Checkbox from '@material-ui/core/Checkbox'
 import useStyles from './tableRow-styles'
 import clsx from 'clsx'
 
-export default function TableRow({onSelectRow, selectedRows, isVirtualizationOn, style, student}) {
+export default function TableRow({onSelectRow, selectedRows, isVirtualizationOn, style, student, columns}) {
   const classes = useStyles()
 
   const isSelected = id => selectedRows.indexOf(id) !== -1
   const isItemSelected = isSelected(student.id)
+  const {isEmailOn, isChangeDateOn, isScoreOn, isMarriedOn, isSizeOn} = columns
 
   return (
     <div
@@ -17,30 +18,55 @@ export default function TableRow({onSelectRow, selectedRows, isVirtualizationOn,
       })}
       onClick={event => onSelectRow(event, student.id)}
     >
+
       <div className={clsx(classes.tableCell, classes.checkbox, {
         [classes.selected]: isItemSelected,
-      })}><Checkbox checked={isItemSelected}/></div>
+      })}>
+        <Checkbox color="primary" checked={isItemSelected}/>
+      </div>
+
       <div className={clsx(classes.tableCell, classes.id, {
         [classes.selected]: isItemSelected,
-      })}><p>{student.id}</p></div>
+      })}>
+        <p>{student.id}</p>
+      </div>
+
       <div className={clsx(classes.tableCell, classes.name, {
         [classes.selected]: isItemSelected,
-      })}><p>{student.name}</p></div>
-      <div className={clsx(classes.tableCell, {
+      })}>
+        <p>{student.name}</p>
+      </div>
+
+      {isEmailOn && <div className={clsx(classes.tableCell, {
         [classes.selected]: isItemSelected,
-      })}><p className={classes.email}>{student.email}</p></div>
-      <div className={clsx(classes.tableCell, classes.date, {
+      })}>
+        <p className={classes.email}>{student.email}</p>
+      </div>}
+
+      {isChangeDateOn && <div className={clsx(classes.tableCell, classes.date, {
         [classes.selected]: isItemSelected,
-      })}><p>{student.changeDate.toDateString('en-US')}</p></div>
-      <div className={clsx(classes.tableCell, classes.score, {
+      })}>
+        <p>{student.changeDate.toDateString('en-US')}</p>
+      </div>}
+
+      {isScoreOn && <div className={clsx(classes.tableCell, classes.score, {
         [classes.selected]: isItemSelected,
-      })}><p>{student.score.toLocaleString('en-US')}</p></div>
-      <div className={clsx(classes.tableCell, classes.size, {
+      })}>
+        <p>{student.score.toLocaleString('en-US')}</p>
+      </div>}
+
+      {isSizeOn && <div className={clsx(classes.tableCell, classes.size, {
         [classes.selected]: isItemSelected,
-      })}><p>{student.size.value}</p></div>
-      <div className={clsx(classes.tableCell, classes.married, {
+      })}>
+        <p>{student.size.value}</p>
+      </div> }
+
+      {isMarriedOn && <div className={clsx(classes.tableCell, classes.married, {
         [classes.selected]: isItemSelected,
-      })}><p>{student.isMarried ? 'Yes' : 'No'}</p></div>
+      })}>
+        <p>{student.isMarried ? 'Yes' : 'No'}</p>
+      </div>}
+
     </div>
 )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import TableContainer from './containers/tableContainer/tableContainer'
-import SearchPannelContainer from './containers/searchPanelContainer/searchPanelContainer'
+import ToolsPannelContainer from './containers/toolsPanelContainer/toolsPanelContainer'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <h1>DataGrid project</h1>
       </header>
       <main>
-        <SearchPannelContainer />
+        <ToolsPannelContainer />
         <TableContainer />
       </main>
     </div>

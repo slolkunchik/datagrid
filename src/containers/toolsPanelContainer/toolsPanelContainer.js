@@ -5,7 +5,9 @@ import {
   filterSelectValueChanged,
   filterSwitchValueChanged,
   isVirtualizationOn,
+  changeColumnsToDisplay
 } from '../../actions/actionCreator'
+import ToolsPannel from '../../components/toolsPanel/toolsPanel'
 
 export default function() {
   const {
@@ -15,6 +17,28 @@ export default function() {
   }))
   const [searchInputValue, setSearchValue] = useState('')
   const dispatch = useDispatch()
+  const [columns, setColumns] = React.useState({
+    isEmailOn: true,
+    isChangeDateOn: true,
+    isScoreOn: true,
+    isMarriedOn: true,
+    isSizeOn: true,
+  });
+
+  const handleColumnChange = name => event => {
+    setColumns({ ...columns, [name]: event.target.checked });
+    dispatch(changeColumnsToDisplay({...columns, [name]: event.target.checked}))
+  };
+
+  const dataForColumns = {
+    isEmailOn: columns.isEmailOn,
+    isChangeDateOn: columns.isChangeDateOn,
+    isScoreOn: columns.isScoreOn,
+    isMarriedOn: columns.isMarriedOn,
+    isSizeOn: columns.isSizeOn,
+    handleChange: handleColumnChange,
+  }
+
   const handleSelectChange = (event) => {
     if (event === null) {
       dispatch(filterSelectValueChanged([]))
@@ -40,6 +64,7 @@ export default function() {
       value = {searchInputValue}
       isVirtualizationOn={isVirtOn}
       handleIsVirtualizationCheck={(event)=> dispatch(isVirtualizationOn(event.target.checked))}
+      columns={dataForColumns}
     />
   )
 }

@@ -5,7 +5,7 @@ import {
   ACTION_COLUMNS_CHANGED,
 } from '../constants'
 
-const filters = {
+const toolsSettings = {
   searchFieldsArray: ['name', 'email', 'score'],
   searchValue: '',
   selectValue: [],
@@ -15,11 +15,12 @@ const filters = {
     isChangeDateOn: true,
     isScoreOn: true,
     isMarriedOn: true,
+    isSizeOn: true,
   }
 }
 
-const filterReducer = (state = filters,
-                      {type, newSearchValue, newSelectValue, newSwitchPosition, newColumnsToDisplay}) => {
+const toolsSettingsReducer = (state = toolsSettings,
+                             {type, newSearchValue, newSelectValue, newSwitchPosition, newColumnsToDisplay}) => {
 
   switch (type) {
     case ACTION_SEARCH_VALUE_CHANGED:
@@ -47,4 +48,4 @@ const filterReducer = (state = filters,
   }
 }
 
-export default filterReducer
+export default toolsSettingsReducer

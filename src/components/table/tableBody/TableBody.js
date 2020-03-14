@@ -1,7 +1,8 @@
 import React from 'react'
 import TableRow from '../tableRow/TableRow'
+import TableBodyVirtualized from "../tableBodyVirtualized/tableBodyVirtualized";
 
-export default function TableBody({students, onSelectRow, selectedRows, isVirtualizationOn}) {
+export default function TableBody({students, onSelectRow, selectedRows, isVirtualizationOn, columns}) {
   return (
     <>
     {
@@ -13,6 +14,7 @@ export default function TableBody({students, onSelectRow, selectedRows, isVirtua
             selectedRows={selectedRows}
             isVirtualizationOn={isVirtualizationOn}
             student={row}
+            columns={columns}
           />)
       })
     }

@@ -5,8 +5,9 @@ import { sortSettingsChanged } from '../../../actions/actionCreator'
 import { SORT_DIRECTION_ASC, SORT_DIRECTION_DESC  } from '../../../constants'
 
 export default function TableHeadContainer({ handleSortClick, onSelectAll, selectedNumber }) {
-  const { tableHeadData } = useSelector(state => ({
+  const { tableHeadData, columns } = useSelector(state => ({
     tableHeadData: state.tableData.tableHeadData,
+    columns: state.toolsSettings.columns,
   }))
   const dispatch = useDispatch()
   const handleClickColumn = (event, clickedElement) => {
@@ -59,6 +60,7 @@ export default function TableHeadContainer({ handleSortClick, onSelectAll, selec
       handleClickColumn={ handleClickColumn }
       onSelectAll={onSelectAll}
       selectedNumber={selectedNumber}
+      columns={columns}
     />
   );
 }
