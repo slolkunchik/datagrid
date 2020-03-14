@@ -7,8 +7,8 @@ const useStyles = makeStyles({
       backgroundColor: 'rgb(201,201,201)',
     },
     flexWrap: 'nowrap',
-    height: 65,
-    width: '200% !important',
+    height: 35,
+    width: '130% !important',
   },
   tableCell: {
     padding: 3,
@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     textOverflow: 'ellipsis',
     minWidth: 0,
     background: 'rgb(255,255,255)',
+    border: '1px solid rgb(201,201,201)',
   },
   selected: {
     backgroundColor: 'rgb(240,240,240)',
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
   email: {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    width: 200,
+    width: 300,
     justifyContent: 'flex-start',
   },
   checkbox: {
@@ -41,32 +42,31 @@ const useStyles = makeStyles({
   id: {
     width: 75,
     position: 'sticky',
-    left: 86,
+    left: 88,
     zIndex: 1,
     flexGrow: 0,
   },
   name: {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    width: 180,
+    width: 250,
     justifyContent: 'flex-start',
     position: 'sticky',
-    left: 167,
+    left: 171,
     zIndex: 1,
-    flexGrow: 0,
   },
   date: {
-    width: 160,
+    width: 250,
   },
   score: {
-    width: 110,
+    width: 190,
     justifyContent: 'flex-end',
   },
   size: {
-    width: 120,
+    width: 185,
   },
   married: {
-    width: 120,
+    width: 175,
   }
 })
 

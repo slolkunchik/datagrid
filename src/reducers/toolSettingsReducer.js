@@ -2,6 +2,7 @@ import {
   ACTION_SEARCH_VALUE_CHANGED,
   ACTION_SELECT_VALUE_CHANGED,
   ACTION_SWITCH_CHANGED,
+  ACTION_COLUMNS_CHANGED,
 } from '../constants'
 
 const filters = {
@@ -9,10 +10,16 @@ const filters = {
   searchValue: '',
   selectValue: [],
   isMarriedChecked: false,
+  columns: {
+    isEmailOn: true,
+    isChangeDateOn: true,
+    isScoreOn: true,
+    isMarriedOn: true,
+  }
 }
 
 const filterReducer = (state = filters,
-                      {type, newSearchValue, newSelectValue, newSwitchPosition}) => {
+                      {type, newSearchValue, newSelectValue, newSwitchPosition, newColumnsToDisplay}) => {
 
   switch (type) {
     case ACTION_SEARCH_VALUE_CHANGED:
@@ -29,6 +36,11 @@ const filterReducer = (state = filters,
       return {
         ...state,
         isMarriedChecked: newSwitchPosition,
+      };
+    case ACTION_COLUMNS_CHANGED:
+      return {
+        ...state,
+        columns: newColumnsToDisplay,
       };
     default:
       return state;

@@ -2,7 +2,7 @@ import {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   tableHeadCell: {
-    backgroundColor: '#e2bfbf',
+    backgroundColor: 'rgb(158, 199, 239)',
     cursor: 'pointer',
     '&:hover': {
       backgroundColor: 'rgb(218, 214, 214)',
@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center',
     minWidth: 0,
+    border: '1px solid rgb(201,201,201)',
   },
   sortedIcon: {
     padding: '0 5px',
@@ -34,9 +35,9 @@ const useStyles = makeStyles({
     zIndex: 3,
     top: 0,
     display: 'flex',
-    height: 65,
+    height: 35,
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
-    width: '200%',
+    width: '130%',
   },
   checkbox: {
     width: 80,
@@ -49,30 +50,30 @@ const useStyles = makeStyles({
     width: 75,
     flexGrow: 0,
     position: 'sticky',
-    left: 86,
+    left: 88,
     zIndex: 2,
   },
   name: {
-    width: 180,
-    flexGrow: 0,
+    width: 250,
     position: 'sticky',
-    left: 167,
+    left: 171,
     zIndex: 2,
+    justifyContent: 'flex-start',
   },
   changeDate: {
-    width: 160,
+    width: 250,
   },
   score: {
-    width: 110,
+    width: 190,
   },
   size: {
-    width: 120,
+    width: 185,
   },
   isMarried: {
-    width: 120,
+    width: 175,
   },
   email: {
-    width: 200,
+    width: 300,
   }
 });
 export default useStyles;

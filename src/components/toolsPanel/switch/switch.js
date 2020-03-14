@@ -7,6 +7,7 @@ export default function({ handleSwitchChange, label, checked }) {
     <FormControlLabel
       control={
         <Switch
+          color="primary"
           onChange={handleSwitchChange}
           value="checkedB"
           checked={checked}

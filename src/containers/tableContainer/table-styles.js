@@ -4,12 +4,12 @@ const useStyles = makeStyles({
   table: {
     margin: '0 auto',
     overflow: 'scroll',
-    height: '65vh'
+    height: '60vh'
   },
   container: {
     margin: '0 auto',
     width: '100%',
-    height: '65vh',
+    height: '60vh',
   },
   divider: {
     height: 1,

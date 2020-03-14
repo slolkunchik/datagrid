@@ -5,6 +5,7 @@ const style = makeStyles( theme => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1),
     justifyContent: 'space-between',
+    height: 48,
   },
   highlight:
     theme.palette.type === 'light'

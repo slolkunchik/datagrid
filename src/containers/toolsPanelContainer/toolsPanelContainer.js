@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import SearchPannel from '../../components/searchPanel/searchPanel'
 import {
   filterSearchValueChanged,
   filterSelectValueChanged,
@@ -34,7 +33,7 @@ export default function() {
   }, [searchInputValue, dispatch])
 
   return (
-    <SearchPannel
+    <ToolsPannel
       handleSearchChange={event => {setSearchValue(event.target.value)}}
       handleSelectChange={handleSelectChange}
       handleSwitchChange={event => dispatch(filterSwitchValueChanged(event.target.checked))}

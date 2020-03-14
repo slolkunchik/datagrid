@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const style = makeStyles({
   root: {
-    marginBottom: 20,
+    marginBottom: 10,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
