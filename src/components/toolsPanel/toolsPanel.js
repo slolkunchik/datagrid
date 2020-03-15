@@ -14,7 +14,9 @@ export default function ({
                            value,
                            isVirtualizationOn,
                            handleIsVirtualizationCheck,
-                           columns
+                           columns,
+                           selectValue,
+                           isMarriedChecked
                          }) {
   const classes = useStyles()
 
@@ -33,13 +35,17 @@ export default function ({
             />
             <SearchIcon className={classes.icon}/>
           </Paper>
-          <Select onChange={handleSelectChange}/>
-          <Switch handleSwitchChange={handleSwitchChange} label='Married'/>
+          <Select selectValue={selectValue} onChange={handleSelectChange}/>
+          <Switch
+            handleSwitchChange={handleSwitchChange}
+            label='married'
+            checked={isMarriedChecked}
+            title="sort by married status"/>
           <Switch
             handleSwitchChange={(event) => handleIsVirtualizationCheck(event)}
             label={isVirtualizationOn ? 'Virt. ON' : 'Virt. OFF'}
             checked={isVirtualizationOn}
-            title='switch virtualization'/>
+            title="switch virtualization"/>
         </div>
       </section>
       <section className={classes.root}>

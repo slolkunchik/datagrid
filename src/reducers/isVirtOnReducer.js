@@ -1,9 +1,15 @@
 import {
   ACTION_VIRT_CHANGED,
 } from '../constants'
+import { load } from 'redux-localstorage-simple'
 
-const virtualization = {
-  isChecked: true,
+const DATA_GRID = load({ namespace: 'data_grid' })
+let virtualization = DATA_GRID.virtualization
+
+if ((!DATA_GRID || !DATA_GRID.virtualization || DATA_GRID.virtualization.isChecked === undefined) ) {
+  virtualization = {
+    isChecked: true,
+  }
 }
 
 const isVirtOnReducer = (state = virtualization,

@@ -61,6 +61,7 @@ export default function TableHeadContainer({ handleSortClick, onSelectAll, selec
       onSelectAll={onSelectAll}
       selectedNumber={selectedNumber}
       columns={columns}
+      tableHeadData={tableHeadData}
     />
   );
 }

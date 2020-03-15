@@ -4,18 +4,24 @@ import {
   ACTION_SWITCH_CHANGED,
   ACTION_COLUMNS_CHANGED,
 } from '../constants'
+import { load } from 'redux-localstorage-simple'
 
-const toolsSettings = {
-  searchFieldsArray: ['name', 'email', 'score'],
-  searchValue: '',
-  selectValue: [],
-  isMarriedChecked: false,
-  columns: {
-    isEmailOn: true,
-    isChangeDateOn: true,
-    isScoreOn: true,
-    isMarriedOn: true,
-    isSizeOn: true,
+const DATA_GRID = load({ namespace: 'data_grid' })
+let toolsSettings = DATA_GRID.toolsSettings
+
+if ((!DATA_GRID || !DATA_GRID.toolsSettings) ) {
+  toolsSettings = {
+    searchFieldsArray: ['name', 'email', 'score'],
+    searchValue: '',
+    selectValue: [],
+    isMarriedChecked: false,
+    columns: {
+      isEmailOn: true,
+      isChangeDateOn: true,
+      isScoreOn: true,
+      isMarriedOn: true,
+      isSizeOn: true,
+    }
   }
 }
 

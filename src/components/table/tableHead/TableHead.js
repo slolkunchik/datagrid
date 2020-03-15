@@ -1,12 +1,11 @@
 import React from 'react'
 import useStyles from './tableHead-styles'
 import SortIcon from '@material-ui/icons/Sort'
-import headerData from '../../../data/tableHeadData'
 import clsx from 'clsx'
 import { SORT_DIRECTION_DESC } from '../../../constants'
 import Checkbox from '@material-ui/core/Checkbox'
 
-export default function StickyTableHead({ handleClickColumn, onSelectAll, selectedNumber, columns}) {
+export default function StickyTableHead({ handleClickColumn, onSelectAll, selectedNumber, columns, tableHeadData}) {
   const classes = useStyles()
   const {isEmailOn, isChangeDateOn, isScoreOn, isSizeOn, isMarriedOn} = columns
   const dataAdapter = {
@@ -21,19 +20,19 @@ export default function StickyTableHead({ handleClickColumn, onSelectAll, select
     <div className={classes.tableHeadRow}>
       <div
         className={clsx(classes.tableHeadCell, classes.checkbox)}
-        key='headerName-checkbox'
+        key="headerName-checkbox"
         onChange={onSelectAll}
       >
         <Checkbox color="primary" checked={selectedNumber > 0}/>
       </div>
-      {headerData.map((el, index) => {
+      {tableHeadData.map((el, index) => {
         const itemSelfClass = el.id
         if (dataAdapter[itemSelfClass] === undefined || dataAdapter[itemSelfClass]) {
           return <div
             className={clsx(classes.tableHeadCell, classes[itemSelfClass])}
             key={`headerName-${index}`}
             onClick={(e) => handleClickColumn(e, el)}
-            title='Hold shift to sort a few columns'
+            title="Hold shift to sort a few columns"
           >
             {el.body}
             { el.isSorted
@@ -53,6 +52,7 @@ export default function StickyTableHead({ handleClickColumn, onSelectAll, select
             }
           </div>
         }
+      return undefined;
       })}
     </div>
   )

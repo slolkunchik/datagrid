@@ -10,20 +10,23 @@ import {
 import ToolsPannel from '../../components/toolsPanel/toolsPanel'
 
 export default function() {
+  const dispatch = useDispatch()
   const {
     isVirtOn,
+    columnsFromRedux,
+    selectValue,
+    searchValue,
+    isMarriedChecked,
   } = useSelector(state => ({
     isVirtOn: state.virtualization.isChecked,
+    columnsFromRedux: state.toolsSettings.columns,
+    selectValue: state.toolsSettings.selectValue,
+    searchValue: state.toolsSettings.searchValue,
+    isMarriedChecked: state.toolsSettings.isMarriedChecked,
   }))
-  const [searchInputValue, setSearchValue] = useState('')
-  const dispatch = useDispatch()
-  const [columns, setColumns] = React.useState({
-    isEmailOn: true,
-    isChangeDateOn: true,
-    isScoreOn: true,
-    isMarriedOn: true,
-    isSizeOn: true,
-  });
+  const [searchInputValue, setSearchValue] = useState(searchValue)
+  const [selectedOptions, setSelectedOptions] = useState(selectValue)
+  const [columns, setColumns] = React.useState(columnsFromRedux)
 
   const handleColumnChange = name => event => {
     setColumns({ ...columns, [name]: event.target.checked });
@@ -44,8 +47,14 @@ export default function() {
       dispatch(filterSelectValueChanged([]))
       return;
     }
-    const selectedOptions = event.map((option)=>option.value)
-    dispatch(filterSelectValueChanged(selectedOptions))
+    const selectedOptionsArray = event.map((option)=>option.value)
+    setSelectedOptions(selectedOptionsArray)
+    dispatch(filterSelectValueChanged(selectedOptionsArray))
+  }
+
+  const handleSwitchChange = (event) => {
+
+    dispatch(filterSwitchValueChanged(event.target.checked))
   }
 
   useEffect(() => {
@@ -60,11 +69,13 @@ export default function() {
     <ToolsPannel
       handleSearchChange={event => {setSearchValue(event.target.value)}}
       handleSelectChange={handleSelectChange}
-      handleSwitchChange={event => dispatch(filterSwitchValueChanged(event.target.checked))}
+      handleSwitchChange={handleSwitchChange}
       value = {searchInputValue}
       isVirtualizationOn={isVirtOn}
       handleIsVirtualizationCheck={(event)=> dispatch(isVirtualizationOn(event.target.checked))}
       columns={dataForColumns}
+      selectValue={selectedOptions}
+      isMarriedChecked={isMarriedChecked}
     />
   )
 }

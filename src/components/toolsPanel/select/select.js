@@ -14,7 +14,8 @@ const customStyles = {
   }),
 }
 
-export default function ReactSelect({onChange}) {
+export default function ReactSelect({onChange, selectValue}) {
+  const defaultValue = selectValue.map(size => ({ value: size, label: size, }))
   return (
     <Select
       styles={customStyles}
@@ -23,8 +24,9 @@ export default function ReactSelect({onChange}) {
       components={animatedComponents}
       isMulti
       options={sizes}
-      placeholder='Filter by sizes'
+      placeholder="Filter by sizes"
       onChange={onChange}
+      defaultValue={defaultValue}
     />
   )
 }

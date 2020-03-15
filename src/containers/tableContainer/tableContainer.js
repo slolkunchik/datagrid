@@ -1,12 +1,11 @@
-import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React, {useState,  useEffect} from 'react'
+import {useDispatch, useSelector } from 'react-redux'
 import TableHeadContainer from './tableHeadContainer/tableHeadContainer'
 import TableBody from '../../components/table/tableBody/TableBody'
 import TableBodyVirtualized from '../../components/table/tableBodyVirtualized/tableBodyVirtualized'
 import useStyles from './table-styles'
-import {sortDesc, sortAsc} from '../../utils/sortUtils'
+import {doSort} from '../../utils/sortUtils'
 import _ from 'lodash'
-import {SORT_DIRECTION_ASC} from '../../constants'
 import {doFilter} from '../../utils/filterUtils'
 import DeletePanel from '../../components/deletePanel/deletePanel'
 import {dataChanged} from '../../actions/actionCreator'
@@ -22,6 +21,7 @@ export default function CustomTableContainer() {
     isMarriedChecked,
     isVirtualizationOn,
     columns,
+    tableHeadData,
   } = useSelector(state => ({
     initialStudentsData: state.tableData.initialStudentsData,
     searchValue: state.toolsSettings.searchValue,
@@ -30,25 +30,43 @@ export default function CustomTableContainer() {
     isMarriedChecked: state.toolsSettings.isMarriedChecked,
     isVirtualizationOn: state.virtualization.isChecked,
     columns: state.toolsSettings.columns,
+    tableHeadData: state.tableData.tableHeadData,
   }))
 
   const [studentsData, setStudentsData] =  useState(_.cloneDeep(initialStudentsData))
   const [selectedRows, setSelectedRows] = useState([])
+  const [restoreState, setRestoreState] = useState(true)
+  let filteredStudents = studentsData
+
+  useEffect(() => {
+    const sortHeadDataArray = tableHeadData
+      .filter((el) => el.isSorted)
+      .sort((a, b) => b.sortQueue - a.sortQueue)
+
+    if (sortHeadDataArray.length > 0 && restoreState === true) {
+      let arrayToSort = _.cloneDeep(initialStudentsData)
+      sortHeadDataArray.forEach((headData, index) => {
+
+        doSort(headData.sortDirection, headData.id, arrayToSort)
+        setRestoreState(false)
+        setStudentsData(arrayToSort)
+      })
+    }
+  })
+
+  const isFiltered = searchValue.length > 0 || selectValue.length > 0 || isMarriedChecked
+
+  if (isFiltered) {
+    filteredStudents = doFilter(studentsData, searchValue, searchFieldsArray, selectValue, isMarriedChecked)
+  }
 
   const handleSortClick = (el, isShiftPressed) => {
     const arrayToSort = isShiftPressed ? studentsData : _.cloneDeep(initialStudentsData)
 
-    el.sortDirection === SORT_DIRECTION_ASC
-      ? sortAsc(el.id, arrayToSort)
-      : sortDesc(el.id, arrayToSort)
+    doSort(el.sortDirection, el.id, arrayToSort)
 
     setStudentsData(arrayToSort)
   }
-  const isFiltered = searchValue.length > 0 || selectValue.length > 0 || isMarriedChecked
-
-  let filteredStudents = isFiltered
-    ? doFilter(studentsData, searchValue, searchFieldsArray, selectValue, isMarriedChecked)
-    : studentsData
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -79,7 +97,7 @@ export default function CustomTableContainer() {
     setSelectedRows(newSelectedRows);
   }
 
-  const handleDeleteClick = ()=> {
+  const handleDeleteClick = () => {
     if (selectedRows.length === 0) {
       return;
     }
@@ -115,7 +133,8 @@ export default function CustomTableContainer() {
               <TableHeadContainer
                 handleSortClick={handleSortClick}
                 onSelectAll={handleSelectAllClick}
-                selectedNumber={selectedRows.length}/>
+                selectedNumber={selectedRows.length}
+              />
               <TableBody isVirtualizationOn={isVirtualizationOn}
                            students={filteredStudents}
                            selectedRows={selectedRows}
@@ -124,7 +143,6 @@ export default function CustomTableContainer() {
               />
             </div>
           }
-
       </div>
     </>
   );

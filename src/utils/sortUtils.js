@@ -1,3 +1,5 @@
+import {SORT_DIRECTION_ASC} from "../constants";
+
 export function sortDesc(sortKey, arrayToSort) {
   if (sortKey === 'size') {
     arrayToSort.sort((elA, elB) => {
@@ -46,3 +48,8 @@ export function sortAsc(sortKey, arrayToSort) {
   })
 }
 
+export function doSort (sortDirection, id, arrayToSort ) {
+  sortDirection === SORT_DIRECTION_ASC
+    ? sortAsc(id, arrayToSort)
+    : sortDesc(id, arrayToSort)
+}

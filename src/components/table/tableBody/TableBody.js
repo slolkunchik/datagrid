@@ -1,6 +1,5 @@
 import React from 'react'
 import TableRow from '../tableRow/TableRow'
-import TableBodyVirtualized from "../tableBodyVirtualized/tableBodyVirtualized";
 
 export default function TableBody({students, onSelectRow, selectedRows, isVirtualizationOn, columns}) {
   return (

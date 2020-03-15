@@ -4,10 +4,21 @@ import {
 } from '../constants'
 import studentsData from '../data/studentsData'
 import tableHeadData from '../data/tableHeadData'
+import { load } from 'redux-localstorage-simple'
 
-const tableData = {
-  initialStudentsData: studentsData,
-  tableHeadData,
+const DATA_GRID = load({ namespace: 'data_grid' })
+
+let tableData;
+
+if ((!DATA_GRID || !DATA_GRID.tableData) ) {
+ tableData = {
+    initialStudentsData: studentsData,
+    tableHeadData,
+  }
+} else {
+  DATA_GRID.tableData.initialStudentsData
+    .forEach((student) => {student.changeDate = new Date(student.changeDate)})
+  tableData = DATA_GRID.tableData
 }
 
 const tableDataReducer = (state = tableData,

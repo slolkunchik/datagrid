@@ -5,7 +5,7 @@ import ToolsPannelContainer from './containers/toolsPanelContainer/toolsPanelCon
 
 function App() {
   return (
-    <div className='wrapper'>
+    <div className="wrapper">
       <header>
         <h1>DataGrid project</h1>
       </header>
