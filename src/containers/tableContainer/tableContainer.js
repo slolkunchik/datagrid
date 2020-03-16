@@ -9,6 +9,7 @@ import _ from 'lodash'
 import {doFilter} from '../../utils/filterUtils'
 import DeletePanel from '../../components/deletePanel/deletePanel'
 import {dataChanged} from '../../actions/actionCreator'
+import ExportCSVContainer from '../exportCSVContainer/exportCSVContainer'
 
 export default function CustomTableContainer() {
   const classes = useStyles()
@@ -110,6 +111,7 @@ export default function CustomTableContainer() {
 
   return (
     <>
+      <ExportCSVContainer filteredArray={filteredStudents} columns={columns}/>
       <div
         className={classes.container}>
         <DeletePanel
