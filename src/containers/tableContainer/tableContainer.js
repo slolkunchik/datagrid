@@ -10,6 +10,7 @@ import {doFilter} from '../../utils/filterUtils'
 import DeletePanel from '../../components/deletePanel/deletePanel'
 import {dataChanged} from '../../actions/actionCreator'
 import ExportCSVContainer from '../exportCSVContainer/exportCSVContainer'
+import QueryStringExample from '../../components/queryStringExample/queryStringExample'
 
 export default function CustomTableContainer() {
   const classes = useStyles()
@@ -112,6 +113,7 @@ export default function CustomTableContainer() {
   return (
     <>
       <ExportCSVContainer filteredArray={filteredStudents} columns={columns}/>
+      <QueryStringExample />
       <div
         className={classes.container}>
         <DeletePanel

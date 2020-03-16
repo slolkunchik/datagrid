@@ -1,9 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 const style = makeStyles({
-  formControl: {
-    display: 'flex',
-    flexDirection: 'row',
+  queryButton: {
+   margin: '0 10px'
   },
 })
 

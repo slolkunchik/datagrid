@@ -26,7 +26,7 @@ export default function ReactSelect({onChange, selectValue}) {
       options={sizes}
       placeholder="Filter by sizes"
       onChange={onChange}
-      defaultValue={defaultValue}
+      value={defaultValue}
     />
   )
 }

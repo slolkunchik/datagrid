@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import queryString from 'query-string'
+
 import {
   filterSearchValueChanged,
   filterSelectValueChanged,
@@ -9,7 +11,7 @@ import {
 } from '../../actions/actionCreator'
 import ToolsPannel from '../../components/toolsPanel/toolsPanel'
 
-export default function() {
+export default function({ locationSearch }) {
   const dispatch = useDispatch()
   const {
     isVirtOn,
@@ -59,11 +61,25 @@ export default function() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      dispatch(filterSearchValueChanged(searchInputValue)
-    )
+      dispatch(filterSearchValueChanged(searchInputValue))
     }, 400)
     return () => clearTimeout(timer)
   }, [searchInputValue, dispatch])
+
+  useEffect(()=> {
+    const values = queryString.parse(locationSearch)
+    const { enum: enumSearchQuery, text } = values
+
+    if (text) {
+      setSearchValue(text)
+      dispatch(filterSearchValueChanged(text))
+    }
+
+    if (enumSearchQuery) {
+      setSelectedOptions(enumSearchQuery.split(','))
+      dispatch(filterSelectValueChanged(enumSearchQuery.split(',')))
+    }
+  }, [dispatch, locationSearch])
 
   return (
     <ToolsPannel
