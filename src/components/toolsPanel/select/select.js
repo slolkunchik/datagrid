@@ -15,7 +15,8 @@ const customStyles = {
 }
 
 export default function ReactSelect({onChange, selectValue}) {
-  const defaultValue = selectValue.map(size => ({ value: size, label: size, }))
+  const values = selectValue.map(size => ({ value: size, label: size }))
+
   return (
     <Select
       styles={customStyles}
@@ -26,7 +27,8 @@ export default function ReactSelect({onChange, selectValue}) {
       options={sizes}
       placeholder="Filter by sizes"
       onChange={onChange}
-      value={defaultValue}
+      value={values}
+      defaultValue={[]}
     />
   )
 }

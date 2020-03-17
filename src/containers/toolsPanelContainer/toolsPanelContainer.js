@@ -46,6 +46,7 @@ export default function({ locationSearch }) {
 
   const handleSelectChange = (event) => {
     if (event === null) {
+      setSelectedOptions([])
       dispatch(filterSelectValueChanged([]))
       return;
     }
