@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import queryString from 'query-string'
-
+import PropTypes from 'prop-types'
+import ToolsPannel from '../../components/toolsPanel/toolsPanel'
 import {
   filterSearchValueChanged,
   filterSelectValueChanged,
@@ -9,9 +10,8 @@ import {
   isVirtualizationOn,
   changeColumnsToDisplay
 } from '../../actions/actionCreator'
-import ToolsPannel from '../../components/toolsPanel/toolsPanel'
 
-export default function({ locationSearch }) {
+export default function ToolsPanelContainer({ locationSearch }) {
   const dispatch = useDispatch()
   const {
     isVirtOn,
@@ -95,4 +95,12 @@ export default function({ locationSearch }) {
       isMarriedChecked={isMarriedChecked}
     />
   )
+}
+
+ToolsPanelContainer.propTypes = {
+  locationSearch: PropTypes.string,
+}
+
+ToolsPanelContainer.defaultProps = {
+  locationSearch: '',
 }

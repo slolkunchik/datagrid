@@ -2,8 +2,9 @@ import React from 'react'
 import useStyles from './tableHead-styles'
 import SortIcon from '@material-ui/icons/Sort'
 import clsx from 'clsx'
-import { SORT_DIRECTION_DESC } from '../../../constants'
+import {SORT_DIRECTION_DESC} from '../../../constants'
 import Checkbox from '@material-ui/core/Checkbox'
+import PropTypes from 'prop-types'
 
 export default function StickyTableHead({ handleClickColumn, onSelectAll, selectedNumber, columns, tableHeadData}) {
   const classes = useStyles()
@@ -56,4 +57,19 @@ export default function StickyTableHead({ handleClickColumn, onSelectAll, select
       })}
     </div>
   )
+}
+
+StickyTableHead.propTypes = {
+  handleClickColumn: PropTypes.func.isRequired,
+  onSelectAll: PropTypes.func.isRequired,
+  selectedNumber: PropTypes.number.isRequired,
+  columns: PropTypes.objectOf(PropTypes.bool).isRequired,
+  tableHeadData: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    body: PropTypes.string,
+    isSorted: PropTypes.bool,
+    sortDirection: PropTypes.string,
+    sortQueue: PropTypes.number,
+    isFilterKey: PropTypes.bool,
+  })).isRequired,
 }

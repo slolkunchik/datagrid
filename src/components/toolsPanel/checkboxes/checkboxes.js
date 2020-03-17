@@ -5,6 +5,7 @@ import FormControl from '@material-ui/core/FormControl'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
+import PropTypes from 'prop-types'
 
 export default function Checkboxes({columns:{isEmailOn, isChangeDateOn, isScoreOn, isSizeOn, isMarriedOn, handleChange}}) {
   const classes = useStyles()
@@ -42,4 +43,15 @@ export default function Checkboxes({columns:{isEmailOn, isChangeDateOn, isScoreO
       </FormGroup>
     </FormControl>
   )
+}
+
+Checkboxes.propTypes = {
+  columns: PropTypes.shape({
+    isEmailOn: PropTypes.bool,
+    isChangeDateOn: PropTypes.bool,
+    isScoreOn: PropTypes.bool,
+    isSizeOn: PropTypes.bool,
+    isMarriedOn: PropTypes.bool,
+    handleChange: PropTypes.func,
+  }).isRequired,
 }

@@ -1,8 +1,9 @@
 import React from 'react'
 import ExportCSV from '../../components/exportCSV/exportCSV'
 import {defineTitlesCVS, defineBodyCVS} from '../../utils/cvsUtils'
+import PropTypes from 'prop-types'
 
-export default function ({filteredArray, columns}) {
+export default function ExportCSVContainer ({filteredArray, columns}) {
 
   const handleExportClick = () => {
     const { isEmailOn, isChangeDateOn, isScoreOn, isSizeOn, isMarriedOn } = columns
@@ -25,4 +26,21 @@ export default function ({filteredArray, columns}) {
   return (
     <ExportCSV handleExportClick={handleExportClick} />
   )
+}
+
+ExportCSVContainer.propTypes = {
+  filteredArray: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    score: PropTypes.number,
+    changeDate: PropTypes.object,
+    size: PropTypes.object,
+    isMarried: PropTypes.bool,
+  })),
+  columns: PropTypes.objectOf(PropTypes.bool).isRequired,
+}
+
+ExportCSVContainer.defaultProps = {
+  filteredArray: [],
 }

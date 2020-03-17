@@ -3,6 +3,7 @@ import TableHead from '../../../components/table/tableHead/TableHead'
 import { useSelector, useDispatch } from 'react-redux'
 import { sortSettingsChanged } from '../../../actions/actionCreator'
 import { SORT_DIRECTION_ASC, SORT_DIRECTION_DESC  } from '../../../constants'
+import PropTypes from 'prop-types'
 
 export default function TableHeadContainer({ handleSortClick, onSelectAll, selectedNumber }) {
   const { tableHeadData, columns } = useSelector(state => ({
@@ -66,5 +67,11 @@ export default function TableHeadContainer({ handleSortClick, onSelectAll, selec
       columns={columns}
       tableHeadData={tableHeadData}
     />
-  );
+  )
+}
+
+TableHeadContainer.propTypes = {
+  handleSortClick: PropTypes.func.isRequired,
+  onSelectAll: PropTypes.func.isRequired,
+  selectedNumber: PropTypes.number.isRequired,
 }

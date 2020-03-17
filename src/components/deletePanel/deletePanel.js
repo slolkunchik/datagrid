@@ -6,8 +6,9 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import useStyles from './deletePanel-styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
-export default function ({selectedNumber, onDeleteClick}) {
+export default function DeletePanel ({selectedNumber, onDeleteClick}) {
   const classes = useStyles()
 
   return (
@@ -27,3 +28,9 @@ export default function ({selectedNumber, onDeleteClick}) {
     </Toolbar>
   )
 }
+
+DeletePanel.propTypes = {
+  selectedNumber: PropTypes.number.isRequired,
+  onDeleteClick: PropTypes.func.isRequired
+}
+

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const ItemWrapper = ({ data, index, style }) => {
   const { ItemRenderer, stickyIndices } = data
@@ -9,3 +10,14 @@ const ItemWrapper = ({ data, index, style }) => {
 };
 
 export default ItemWrapper
+
+ItemWrapper.propTypes = {
+  data: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  style: PropTypes.object.isRequired,
+}
+
+ItemWrapper.defaultProps = {
+  students: [],
+  selectedRows: [],
+}

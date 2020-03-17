@@ -6,8 +6,9 @@ import InputBase from '@material-ui/core/InputBase'
 import Select from './select/select'
 import Switch from './switch/switch'
 import Checkboxes from './checkboxes/checkboxes'
+import PropTypes from 'prop-types'
 
-export default function ({
+export default function ToolsPanel({
                            handleSearchChange,
                            handleSelectChange,
                            handleSwitchChange,
@@ -38,7 +39,7 @@ export default function ({
           <Select selectValue={selectValue} onChange={handleSelectChange}/>
           <Switch
             handleSwitchChange={handleSwitchChange}
-            label='married'
+            label="married"
             checked={isMarriedChecked}
             title="sort by married status"/>
           <Switch
@@ -53,4 +54,23 @@ export default function ({
       </section>
     </>
   )
+}
+
+ToolsPanel.propTypes = {
+  handleSearchChange: PropTypes.func.isRequired,
+  handleSelectChange: PropTypes.func.isRequired,
+  handleSwitchChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  isVirtualizationOn: PropTypes.bool.isRequired,
+  handleIsVirtualizationCheck: PropTypes.func.isRequired,
+  columns: PropTypes.shape({
+    isEmailOn: PropTypes.bool,
+    isChangeDateOn: PropTypes.bool,
+    isScoreOn: PropTypes.bool,
+    isSizeOn: PropTypes.bool,
+    isMarriedOn: PropTypes.bool,
+    handleChange: PropTypes.func,
+  }).isRequired,
+  selectValue: PropTypes.arrayOf(PropTypes.string),
+  isMarriedChecked: PropTypes.bool.isRequired,
 }

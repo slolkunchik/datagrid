@@ -3,6 +3,7 @@ import TableRow from '../tableRow/TableRow'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import TableHeadContainer from "../../../containers/tableContainer/tableHeadContainer/tableHeadContainer"
 import { StickyVirtualizedList, StickyVirtualizedListContext } from '../../../containers/tableContainer/StickyVirtualizedList'
+import PropTypes from 'prop-types'
 
 export default function TableBodyVirtualized({ children, stickyIndices, ...rest }) {
   const {students, onSelectRow, selectedRows, isVirtualizationOn, handleSortClick, onSelectAll, columns} = rest
@@ -55,4 +56,16 @@ export default function TableBodyVirtualized({ children, stickyIndices, ...rest 
       )}
     </AutoSizer>
   )
+}
+
+TableBodyVirtualized.propTypes = {
+  children: PropTypes.func,
+  stickyIndices: PropTypes.array,
+  rest: PropTypes.array,
+}
+
+TableBodyVirtualized.defaultProps = {
+  rest: [],
+  children: undefined,
+  stickyIndices: undefined,
 }

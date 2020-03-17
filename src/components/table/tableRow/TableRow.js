@@ -2,6 +2,7 @@ import React from 'react'
 import Checkbox from '@material-ui/core/Checkbox'
 import useStyles from './tableRow-styles'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
 
 export default function TableRow({onSelectRow, selectedRows, isVirtualizationOn, style, student, columns}) {
   const classes = useStyles()
@@ -69,4 +70,21 @@ export default function TableRow({onSelectRow, selectedRows, isVirtualizationOn,
 
     </div>
 )
+}
+
+TableRow.propTypes = {
+  onSelectRow: PropTypes.func.isRequired,
+  selectedRows: PropTypes.arrayOf(PropTypes.number).isRequired,
+  isVirtualizationOn: PropTypes.bool.isRequired,
+  style: PropTypes.object.isRequired,
+  student: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    score: PropTypes.number,
+    changeDate: PropTypes.object,
+    size: PropTypes.object,
+    isMarried: PropTypes.bool,
+  }).isRequired,
+  columns: PropTypes.objectOf(PropTypes.bool).isRequired,
 }

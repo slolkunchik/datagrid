@@ -1,8 +1,9 @@
 import React from 'react'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
+import PropTypes from 'prop-types'
 
-export default function({ handleSwitchChange, label, checked }) {
+export default function SwitchComponent({ handleSwitchChange, label, checked }) {
   return (
     <FormControlLabel
       control={
@@ -16,4 +17,10 @@ export default function({ handleSwitchChange, label, checked }) {
       label={label}
     />
   )
+}
+
+SwitchComponent.propTypes = {
+  handleSwitchChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
 }

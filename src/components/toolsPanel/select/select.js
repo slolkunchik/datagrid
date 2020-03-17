@@ -3,6 +3,7 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import { sizes } from '../../../data/studentsData'
 import styles from './select-styles.module.css'
+import PropTypes from 'prop-types'
 
 const animatedComponents = makeAnimated()
 
@@ -31,4 +32,9 @@ export default function ReactSelect({onChange, selectValue}) {
       defaultValue={[]}
     />
   )
+}
+
+ReactSelect.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  selectValue: PropTypes.arrayOf(PropTypes.string),
 }

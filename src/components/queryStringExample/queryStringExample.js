@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
 import useStyles from './queryStringExample-styles'
 
-export default function () {
+export default function QueryStringExample() {
   const classes = useStyles()
 
   return (
