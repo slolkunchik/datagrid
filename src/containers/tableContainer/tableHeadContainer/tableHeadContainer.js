@@ -26,17 +26,20 @@ export default function TableHeadContainer({ handleSortClick, onSelectAll, selec
         : stateElement.sortDirection = SORT_DIRECTION_ASC
     }
 
+    let newTableHeadData = tableHeadData
+
     if (isShiftPressed) {
       changeSortQueue(index, stateElement)
     } else {
-      tableHeadData.forEach((headElement) => {
-        headElement.isSorted = false
-        headElement.sortQueue = 1
-      })
+      newTableHeadData = tableHeadData.map((headElement) => ({
+        ...headElement,
+        isSorted: false,
+        sortQueue: 1
+      }))
     }
-    stateElement.isSorted = true
+    newTableHeadData[index].isSorted = true
 
-    dispatch(sortSettingsChanged(tableHeadData))
+    dispatch(sortSettingsChanged(newTableHeadData))
 
     handleSortClick(stateElement, isShiftPressed)
   }
