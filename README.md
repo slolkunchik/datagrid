@@ -2,6 +2,8 @@
   
 Отображение данныx в интерактивной таблице, используя React & Redux.  
 
+### [Live demo of the Datagrid page](https://datagrid-slolkunchik.netlify.com/)
+
 #### Интерактивные функции таблицы
 * Сортировка
 * Фильтрация
