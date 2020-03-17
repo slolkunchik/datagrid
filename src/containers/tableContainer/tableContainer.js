@@ -72,7 +72,7 @@ export default function CustomTableContainer() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelectedRows = studentsData.map(student => student.id);
+      const newSelectedRows = filteredStudents.map(student => student.id);
       setSelectedRows(newSelectedRows);
       return;
     }
@@ -104,9 +104,10 @@ export default function CustomTableContainer() {
       return;
     }
     const isNotSelected = id => selectedRows.indexOf(id) === -1
-    const arrayAfterDelet = studentsData.filter(student => isNotSelected(+student.id))
-    setStudentsData(arrayAfterDelet)
-    dispatch(dataChanged(arrayAfterDelet))
+    const arrayAfterDelete = studentsData.filter(student => isNotSelected(+student.id))
+    const initialArrayAfterDelete = initialStudentsData.filter(student => isNotSelected(+student.id))
+    setStudentsData(arrayAfterDelete)
+    dispatch(dataChanged(initialArrayAfterDelete))
     setSelectedRows([])
   }
 
