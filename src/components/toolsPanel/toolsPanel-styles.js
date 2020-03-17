@@ -10,7 +10,7 @@ const style = makeStyles({
     flexWrap: 'wrap',
   },
   title: {
-    width: '200px',
+    width: '130px',
     margin: '0 0 10px 0',
     fontSize: '1.2rem',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
