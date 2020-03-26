@@ -48,8 +48,13 @@ export function sortAsc(sortKey, arrayToSort) {
   })
 }
 
-export function doSort (sortDirection, id, arrayToSort ) {
-  sortDirection === SORT_DIRECTION_ASC
-    ? sortAsc(id, arrayToSort)
-    : sortDesc(id, arrayToSort)
+export function doSort (arrayToSort, tableHeadData ) {
+  const sortedColumns = tableHeadData
+    .filter(data => data.isSorted === true)
+    .sort((data1, data2) => data2.sortQueue - data1.sortQueue)
+  sortedColumns.forEach(column => {
+    column.sortDirection === SORT_DIRECTION_ASC
+      ? sortAsc(column.id, arrayToSort)
+      : sortDesc(column.id, arrayToSort)
+  })
 }

@@ -5,58 +5,50 @@ import { sortSettingsChanged } from '../../../actions/actionCreator'
 import { SORT_DIRECTION_ASC, SORT_DIRECTION_DESC  } from '../../../constants'
 import PropTypes from 'prop-types'
 
-export default function TableHeadContainer({ handleSortClick, onSelectAll, selectedNumber }) {
+export default function TableHeadContainer({ onSelectAll, selectedNumber }) {
   const { tableHeadData, columns } = useSelector(state => ({
     tableHeadData: state.tableData.tableHeadData,
     columns: state.toolsSettings.columns,
   }))
   const dispatch = useDispatch()
-  const handleClickColumn = (event, clickedElement) => {
+  const handleClickColumn = (event, clickedColumn) => {
     const isShiftPressed = event.shiftKey
 
-    const index = tableHeadData.findIndex((stateElement) => {
-      return clickedElement.id === stateElement.id
+    const index = tableHeadData.findIndex((stateColumn) => {
+      return clickedColumn.id === stateColumn.id
     });
-    const stateElement = tableHeadData[index]
+    const stateColumn = tableHeadData[index]
 
-    if (!stateElement.isSorted) {
-      stateElement.sortDirection = SORT_DIRECTION_ASC
+    if (!stateColumn.isSorted) {
+      stateColumn.sortDirection = SORT_DIRECTION_ASC
     } else {
-      stateElement.sortDirection === SORT_DIRECTION_ASC
-        ? stateElement.sortDirection = SORT_DIRECTION_DESC
-        : stateElement.sortDirection = SORT_DIRECTION_ASC
+      stateColumn.sortDirection === SORT_DIRECTION_ASC
+        ? stateColumn.sortDirection = SORT_DIRECTION_DESC
+        : stateColumn.sortDirection = SORT_DIRECTION_ASC
     }
 
     let newTableHeadData = tableHeadData
 
     if (isShiftPressed) {
-      changeSortQueue(index, stateElement)
+      changeSortQueue(stateColumn)
     } else {
-      newTableHeadData = tableHeadData.map((headElement) => ({
-        ...headElement,
+      newTableHeadData = tableHeadData.map((column) => ({
+        ...column,
         isSorted: false,
         sortQueue: 1
       }))
     }
     newTableHeadData[index].isSorted = true
 
-    dispatch(sortSettingsChanged(newTableHeadData))
-
-    handleSortClick(stateElement, isShiftPressed)
+    dispatch(sortSettingsChanged([...newTableHeadData]))
   }
 
-  function changeSortQueue(selectedElementIndex, selectedElement) {
-    tableHeadData.forEach((headElement) => {
-      if ((selectedElement.isSorted) && (selectedElement.sortQueue > headElement.sortQueue)) {
-        headElement.sortQueue += 1
-      }
-
-      if ((headElement.isSorted) && (!selectedElement.isSorted)) {
-        headElement.sortQueue += 1
+  function changeSortQueue(selectedColumn) {
+    tableHeadData.forEach((headColumn) => {
+      if ((!headColumn.isSorted) && (!selectedColumn.isSorted)) {
+        headColumn.sortQueue += 1
       }
     })
-
-    selectedElement.sortQueue = 1;
   }
 
   return (
@@ -71,7 +63,6 @@ export default function TableHeadContainer({ handleSortClick, onSelectAll, selec
 }
 
 TableHeadContainer.propTypes = {
-  handleSortClick: PropTypes.func.isRequired,
   onSelectAll: PropTypes.func.isRequired,
   selectedNumber: PropTypes.number.isRequired,
 }

@@ -5,7 +5,6 @@ import TableBody from '../../components/table/tableBody/TableBody'
 import TableBodyVirtualized from '../../components/table/tableBodyVirtualized/tableBodyVirtualized'
 import useStyles from './table-styles'
 import {doSort} from '../../utils/sortUtils'
-import _ from 'lodash'
 import {doFilter} from '../../utils/filterUtils'
 import DeletePanel from '../../components/deletePanel/deletePanel'
 import {dataChanged} from '../../actions/actionCreator'
@@ -35,39 +34,25 @@ export default function CustomTableContainer() {
     tableHeadData: state.tableData.tableHeadData,
   }))
 
-  const [studentsData, setStudentsData] =  useState(_.cloneDeep(initialStudentsData))
+  const [studentsData, setStudentsData] =  useState([...initialStudentsData])
   const [selectedRows, setSelectedRows] = useState([])
-  const [restoreState, setRestoreState] = useState(true)
   let filteredStudents = studentsData
 
   useEffect(() => {
     const sortHeadDataArray = tableHeadData
       .filter((el) => el.isSorted)
-      .sort((a, b) => b.sortQueue - a.sortQueue)
 
-    if (sortHeadDataArray.length > 0 && restoreState === true) {
-      let arrayToSort = _.cloneDeep(initialStudentsData)
-      sortHeadDataArray.forEach((headData, index) => {
-
-        doSort(headData.sortDirection, headData.id, arrayToSort)
-        setRestoreState(false)
-        setStudentsData(arrayToSort)
-      })
+    if (sortHeadDataArray.length > 0) {
+      let arrayToSort = [...initialStudentsData]
+      doSort(arrayToSort, tableHeadData)
+      setStudentsData(arrayToSort)
     }
-  })
+  }, [initialStudentsData, tableHeadData])
 
   const isFiltered = searchValue.length > 0 || selectValue.length > 0 || isMarriedChecked
 
   if (isFiltered) {
     filteredStudents = doFilter(studentsData, searchValue, searchFieldsArray, selectValue, isMarriedChecked)
-  }
-
-  const handleSortClick = (el, isShiftPressed) => {
-    const arrayToSort = isShiftPressed ? studentsData : _.cloneDeep(initialStudentsData)
-
-    doSort(el.sortDirection, el.id, arrayToSort)
-
-    setStudentsData(arrayToSort)
   }
 
   const handleSelectAllClick = (event) => {
@@ -128,7 +113,6 @@ export default function CustomTableContainer() {
                                     students={filteredStudents}
                                     selectedRows={selectedRows}
                                     onSelectRow={handleSelectRow}
-                                    handleSortClick={handleSortClick}
                                     onSelectAll={handleSelectAllClick}
                                     columns={columns}
             />
@@ -136,7 +120,6 @@ export default function CustomTableContainer() {
             : <div
               className={classes.table}>
               <TableHeadContainer
-                handleSortClick={handleSortClick}
                 onSelectAll={handleSelectAllClick}
                 selectedNumber={selectedRows.length}
               />

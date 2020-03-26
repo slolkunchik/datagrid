@@ -6,7 +6,7 @@ import { StickyVirtualizedList, StickyVirtualizedListContext } from '../../../co
 import PropTypes from 'prop-types'
 
 export default function TableBodyVirtualized({ children, stickyIndices, ...rest }) {
-  const {students, onSelectRow, selectedRows, isVirtualizationOn, handleSortClick, onSelectAll, columns} = rest
+  const {students, onSelectRow, selectedRows, isVirtualizationOn, onSelectAll, columns} = rest
   const data = [null, ...students]
 
   const Row = ({ index, style }) => {
@@ -24,7 +24,6 @@ export default function TableBodyVirtualized({ children, stickyIndices, ...rest 
 
   const StickyRow = () => (
     <TableHeadContainer
-      handleSortClick={handleSortClick}
       onSelectAll={onSelectAll}
       selectedNumber={selectedRows.length}/>
   );
