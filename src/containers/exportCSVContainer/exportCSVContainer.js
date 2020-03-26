@@ -6,11 +6,10 @@ import PropTypes from 'prop-types'
 export default function ExportCSVContainer ({filteredArray, columns}) {
 
   const handleExportClick = () => {
-    const { isEmailOn, isChangeDateOn, isScoreOn, isSizeOn, isMarriedOn } = columns
-    const headData = defineTitlesCVS( isEmailOn, isChangeDateOn, isScoreOn, isSizeOn, isMarriedOn )
+    const headData = defineTitlesCVS(columns)
 
     const data = filteredArray.reduce((acc, el) => {
-      let bodyString = defineBodyCVS(isEmailOn, isChangeDateOn, isScoreOn, isSizeOn, isMarriedOn, el)
+      let bodyString = defineBodyCVS(columns, el)
       return `${acc}${bodyString}\n`
     },`${headData}\n`)
 

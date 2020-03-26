@@ -89,7 +89,7 @@ export default function ToolsPanelContainer({ locationSearch }) {
       handleSwitchChange={handleSwitchChange}
       value = {searchInputValue}
       isVirtualizationOn={isVirtOn}
-      handleIsVirtualizationCheck={(event)=> dispatch(isVirtualizationOn(event.target.checked))}
+      handleIsVirtualizationCheck={(isChecked) => dispatch(isVirtualizationOn(isChecked))}
       columns={dataForColumns}
       selectValue={selectedOptions}
       isMarriedChecked={isMarriedChecked}

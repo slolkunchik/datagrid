@@ -11,7 +11,7 @@ export const doFilter = (values, filterKey, searchFieldsArray, selectValuesArray
         .map(key =>
           searchFieldsArray.includes(key) ? value[key].toString().toLowerCase() : ''
         )
-      const suitableField = fieldsForCheck.find(element => element.toString().includes(lowerCaseFilterKey))
+      const suitableField = fieldsForCheck.find(field => field.toString().includes(lowerCaseFilterKey))
       isSearchFilterGood = !!suitableField
     }
     if (selectValuesArray.length > 0) {

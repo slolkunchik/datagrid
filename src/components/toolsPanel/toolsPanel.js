@@ -43,7 +43,7 @@ export default function ToolsPanel({
             checked={isMarriedChecked}
             title="sort by married status"/>
           <Switch
-            handleSwitchChange={(event) => handleIsVirtualizationCheck(event)}
+            handleSwitchChange={(event) => handleIsVirtualizationCheck(event.target.checked)}
             label={isVirtualizationOn ? 'Virt. ON' : 'Virt. OFF'}
             checked={isVirtualizationOn}
             title="switch virtualization"/>

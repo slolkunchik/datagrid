@@ -76,7 +76,7 @@ TableRow.propTypes = {
   onSelectRow: PropTypes.func.isRequired,
   selectedRows: PropTypes.arrayOf(PropTypes.number).isRequired,
   isVirtualizationOn: PropTypes.bool.isRequired,
-  style: PropTypes.object.isRequired,
+  style: PropTypes.object,
   student: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -87,4 +87,8 @@ TableRow.propTypes = {
     isMarried: PropTypes.bool,
   }).isRequired,
   columns: PropTypes.objectOf(PropTypes.bool).isRequired,
+}
+
+TableRow.defaultProps = {
+  style: {},
 }

@@ -1,4 +1,5 @@
-export function defineTitlesCVS ( isEmailOn, isChangeDateOn, isScoreOn, isSizeOn, isMarriedOn ) {
+export function defineTitlesCVS (columns) {
+  const { isEmailOn, isChangeDateOn, isScoreOn, isSizeOn, isMarriedOn } = columns
   let initialString = 'id, name'
   if(isEmailOn) {
     initialString = `${initialString}, email`
@@ -18,7 +19,8 @@ export function defineTitlesCVS ( isEmailOn, isChangeDateOn, isScoreOn, isSizeOn
   return initialString
 }
 
-export function defineBodyCVS (isEmailOn, isChangeDateOn, isScoreOn, isSizeOn, isMarriedOn, el) {
+export function defineBodyCVS (columns, el) {
+  const { isEmailOn, isChangeDateOn, isScoreOn, isSizeOn, isMarriedOn } = columns
   let initialBodyString = `${el.id}, ${el.name}`
   if (isEmailOn) {
     initialBodyString = `${initialBodyString}, ${el.email}`
