@@ -1,6 +1,33 @@
 import {SORT_DIRECTION_ASC} from "../constants";
 
 export function sortDesc(sortKey, arrayToSort) {
+  if (sortKey === 'changeDate') {
+    arrayToSort.sort((elA, elB) => {
+      let result
+
+      result = elA[sortKey].getFullYear() < elB[sortKey].getFullYear()
+        ? 1
+        : elA[sortKey].getFullYear() > elB[sortKey].getFullYear()
+          ? -1
+          : 0
+
+      if (result === 0) {
+        result = elA[sortKey].getMonth() < elB[sortKey].getMonth()
+          ? 1
+          : elA[sortKey].getMonth() > elB[sortKey].getMonth()
+            ? -1
+            : 0
+      }
+      if (result === 0) {
+        result = elA[sortKey].getDate() < elB[sortKey].getDate()
+          ? 1
+          : elA[sortKey].getDate() > elB[sortKey].getDate()
+            ? -1 : 0
+      }
+      return result
+    })
+    return undefined;
+  }
   if (sortKey === 'size') {
     arrayToSort.sort((elA, elB) => {
       if (elA[sortKey].weight < elB[sortKey].weight) {
@@ -25,6 +52,33 @@ export function sortDesc(sortKey, arrayToSort) {
 }
 
 export function sortAsc(sortKey, arrayToSort) {
+  if (sortKey === 'changeDate') {
+    arrayToSort.sort((elA, elB) => {
+      let result
+
+      result = elA[sortKey].getFullYear() > elB[sortKey].getFullYear()
+        ? 1
+        : elA[sortKey].getFullYear() < elB[sortKey].getFullYear()
+          ? -1
+          : 0
+
+      if (result === 0) {
+        result = elA[sortKey].getMonth() > elB[sortKey].getMonth()
+          ? 1
+          : elA[sortKey].getMonth() < elB[sortKey].getMonth()
+            ? -1
+            : 0
+      }
+      if (result === 0) {
+        result = elA[sortKey].getDate() > elB[sortKey].getDate()
+          ? 1
+          : elA[sortKey].getDate() < elB[sortKey].getDate()
+            ? -1 : 0
+      }
+      return result
+    })
+    return undefined;
+  }
   if (sortKey === 'size') {
     arrayToSort.sort((elA, elB) => {
       if (elA[sortKey].weight > elB[sortKey].weight) {
