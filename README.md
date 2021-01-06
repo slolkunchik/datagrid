@@ -4,6 +4,8 @@
 
 ### [Live demo of the Datagrid page](https://datagrid-slolkunchik.netlify.com/)
 
+### [Live demo of the Datagrid page](https://datagrid-slolkunchik.netlify.com/)
+
 #### Интерактивные функции таблицы
 * Сортировка
 * Фильтрация
